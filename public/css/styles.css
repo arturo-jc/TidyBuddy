@@ -1,0 +1,32 @@
+/* .icon-active {
+    color: white;
+}
+
+.icon-inactive {
+    color: #698679;
+}
+
+.todo form {
+    display: inline;
+    font-size: 0;
+}
+
+.todo button {
+    color: white;
+    background-color: #007944;
+    border-width: 0;
+    padding: 14px 10px;
+    font-size: 1rem;
+}
+
+.todo button:hover {
+    background-color: #009b58;
+}
+
+.todo button:hover .icon-inactive {
+    color: white;
+}
+
+.todo form:nth-child(1) button{
+    width: 70%;
+} */

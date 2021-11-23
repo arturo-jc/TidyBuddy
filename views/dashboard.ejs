@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://kit.fontawesome.com/aebaafdeec.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <h3>To Do</h3>
+    <% for (let type of activityTypes) { %>
+        <% if (type.priority> 0) { %>
+            <div class="todo">
+                <form action="/activities" method="POST">
+                    <input type="hidden" name="typeId" value="<%= type._id %>">
+                    <button>
+                        <i class="fas fa-check"></i>
+                        <%= type.name %>
+                            <br>
+                            <% if (type.completedBy.length ) { %>
+                                Last completed on: <%= type.completedBy[type.completedBy.length - 1].date %>
+
+                                    <% } %>
+                    </button>
+                </form>
+                <form action="/activitytypes/<%= type._id %>?_method=PUT" method="POST">
+                    <input type="hidden" name="action" value="unmark-to-do">
+                    <button><i class="fas fa-flag icon-active"></i></button>
+                </form>
+                <form action="/activitytypes/<%= type._id %>?_method=PUT" method="POST">
+                    <input type="hidden" name="action" value="toggle-priority">
+                    <input type="hidden" name="priority" value="<%= type.priority %>"">
+                    <button>
+                            <% for( let index=0; index < (type.priority - 1); index++ ) { %>
+                                <i class=" fas fa-exclamation icon-active"></i>
+                    <% } %>
+                        <% for( let index=0; index < (3 - type.priority); index++ ) { %>
+                            <i class=" fas fa-exclamation icon-inactive"></i>
+                            <% } %>
+                                </button>
+                </form>
+                <form action="/activitytypes/<%=type._id %>?_method=DELETE" method="POST">
+                    <button><i class="fas fa-trash icon-inactive"></i></button>
+                </form>
+            </div>
+            <% }} %>
+                <h3>Frequent activities</h3>
+                <% for (let type of activityTypes) { %>
+                    <% if (type.priority < 1) { %>
+                        <div class="todo">
+                            <form action="#">
+                                <button>
+                                    <%= type.name %>
+                                        <br>
+                                        <% if (type.completedBy.length ) { %>
+                                            Last completed on: <%= type.completedBy[type.completedBy.length - 1].date %>
+                                                <% } %>
+                                </button>
+                            </form>
+                            <form action="/activitytypes/<%=type._id %>?_method=PUT" method="POST">
+                                <input type="hidden" name="action" value="mark-to-do">
+                                <button><i class="fas fa-flag icon-inactive"></i></button>
+                            </form>
+                            <form action="#">
+                                <button>
+                                    <i class="fas fa-thumbtack icon-inactive"></i>
+                                </button>
+                            </form>
+                            <form action="/activitytypes/<%=type._id %>?_method=DELETE" method="POST">
+                                <button><i class="fas fa-trash icon-inactive"></i></button>
+                            </form>
+                        </div>
+
+                        <% }} %>
+                            <form action="/activitytypes/" method="POST">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" placeholder="Activity's name">
+                                <button>Add Activity</button>
+                            </form>
+                            <h3>Activity feed</h3>
+                            <% for( let activity of activities ) { %>
+                                <p>User completed <%= activity.name %> on <%= activity.date %>
+                                </p>
+                                <form action="/activities/<%=activity._id%>?_method=DELETE" method="POST">
+                                    <button>Delete activity</button>
+                                </form>
+                                <% for (let comment of activity.comments) { %>
+                                    <p>
+                                        <%= comment.body %>
+                                    </p>
+                                    <form action="/activities/<%=activity._id%>/comments/<%=comment._id%>">
+                                        <button>Delete comment</button>
+                                    </form>
+                                    <% } %>
+
+                                        <form action="/activities/<%=activity._id%>/comments" method="POST">
+                                            <label for="body">Comment</label>
+                                            <textarea name="body" id="body" cols="30"
+                                                rows="10">Write your comment here</textarea>
+                                            <button>Submit</button>
+                                        </form>
+                                        <% } %>
+
+</body>
+
+</html>
