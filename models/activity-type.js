@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const activityTypeSchema = new Schema({
+const ActivityTypeSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -23,4 +23,4 @@ const activityTypeSchema = new Schema({
     ]
 })
 
-module.exports.ActivityType = mongoose.model("ActivityType", activityTypeSchema);
+module.exports.ActivityType = mongoose.model("ActivityType", ActivityTypeSchema);

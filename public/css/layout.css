@@ -25,10 +25,71 @@ body {
     flex-grow: 1;
 }
 
+.card button:hover {
+    cursor: pointer;
+}
+
 .comment-row {
     display: flex;
     flex-wrap: wrap-reverse;
 }
+
+/* lOGIN/REGISTER FORMS */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+}
+
+.auth-container .card {
+    max-width: 600px;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+/* .auth-container .card h1 {
+    margin: auto;
+} */
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin: auto;
+}
+
+.auth-container form label {
+    display: none;
+}
+
+.auth-container form input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9rem;
+    font-weight: 500;
+    padding: 10px 0 13px;
+    text-align: center;
+    border-width: 0 0 1px 0;
+    border-color: rgba(190, 190, 190, 0.8)
+}
+
+.auth-container form input:nth-of-type(1) {
+    border-radius: 10px 10px 0 0;
+}
+
+.auth-container form input:last-of-type {
+    border-width: 0;
+}
+
+.auth-container form button {
+    border-width: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 0 0 10px 10px;
+}
+
+/* MEDIA QUERIES */
 
 @media (max-width: 978px) {
     .container {
@@ -36,6 +97,3 @@ body {
     }
 }
 
-.card button:hover {
-    cursor: pointer;
-}

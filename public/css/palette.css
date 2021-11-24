@@ -2,11 +2,12 @@ body {
     background-color: #fdf9f1;
 }
 
-/* PRIORITY CARD */
-
-.priority {
+.card {
     background-color: #E5DCC3;
 }
+
+/* PRIORITY CARD */
+
 
 .priority .last-completed-date {
     color: #fdbda8
@@ -31,10 +32,6 @@ body {
 
 
 /* FREQUENT CARD */
-
-.frequent {
-    background-color: #E5DCC3;
-}
 
 .frequent .last-completed-date {
     color: #f7b791;;
@@ -77,11 +74,6 @@ body {
 
 
 /* FEED CARD */
-
-.feed {
-    background-color: #E5DCC3;
-}
-
 
 .feed-item .feed-item-body {
     background-color: #8A8635
@@ -140,4 +132,20 @@ body {
 .add-comment-form button:hover {
     color: white;
     background-color: #7c776b;
+}
+
+/* AUTH FORMS */
+
+.auth-container form button {
+    color: white;
+    background-color: #8A8635;
+}
+
+.auth-container form button {
+    color: white;
+    background-color: #8A8635;
+}
+
+.auth-container form button:hover {
+background-color: #a39e3f;
 }

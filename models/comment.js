@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema({
+const CommentSchema = new Schema({
     body: {
         type: String,
         required: true
@@ -12,4 +12,4 @@ const commentSchema = new Schema({
     }
 })
 
-module.exports.Comment = mongoose.model("Comment", commentSchema);
+module.exports.Comment = mongoose.model("Comment", CommentSchema);
