@@ -32,7 +32,6 @@
 
 .todo-item .button-group {
     display: flex;
-    min-width: 100px;    
 }
 
 .todo-item .button-group form {
@@ -95,7 +94,7 @@
 /* FEED ITEMS */
 
 
-.hide-comments {
+.hidden {
     display: none;
 }
 
@@ -103,13 +102,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 10px;
     margin: 10px 0;
-    padding: 10px 0;
 }
 
 .feed-item .feed-item-body {
     display: flex;
+    flex-grow: 1;
+    border-radius: 10px 0 0 10px;
 }
 
 .feed-item .feed-item-body .checkmark {
@@ -120,13 +119,16 @@
 }
 
 .feed-item .feed-item-body p {
-    margin: 4px 0;
+    margin: 10px 10px 10px 0;
 }
 
 .feed-item .feed-item-body .item-description {
     font-size: .9rem;
     font-weight: 400;
     font-style: italic;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .feed-item button {
@@ -136,8 +138,23 @@
     font-weight: 400;
 }
 
-.feed-item .delete-button-container button {
+.feed-item .feed-item-body .item-description button {
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.feed-item .delete-button-container {
+    display: flex;
+    align-self: stretch;
+}
+
+.feed-item .delete-button-container form {
+    display: flex;
+}
+
+.feed-item .delete-button-container form button {
     padding: 0 18px;
+    border-radius: 0 10px 10px 0;
 }
 
 /* COMMENTS */

@@ -1,7 +1,7 @@
 <div class="card priority">
     <h3>To Do</h3>
-    <% for (let type of activityTypes) { %>
-        <% if (type.priority> 0) { %>
+    <% for (let type of activityTypes.filter(type=> type.priority > 0).sort((a, b)=> (a.priority < b.priority) ? 1 :
+            -1)) { %>
             <div class="todo-item">
                 <form class="mark-complete-form" action="/activities" method="POST">
                     <input type="hidden" name="typeId" value="<%= type._id %>">
@@ -45,5 +45,5 @@
                     </form>
                 </div>
             </div>
-            <% }} %>
+            <% } %>
 </div>

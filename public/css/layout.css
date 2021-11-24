@@ -19,7 +19,7 @@ body {
 
 .card {
     margin: 0 12px 24px;
-    padding: 12px;
+    padding: 12px 24px;
     border-radius: 20px;
     box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .5);
     flex-grow: 1;

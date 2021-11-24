@@ -1,55 +1,60 @@
 <div class="card feed">
     <h3>Activity feed</h3>
     <% for( let activity of activities ) { %>
-        <div class="feed-item">
-            <div class="feed-item-body">
-                <div class="checkmark">
-                    <i class="fas fa-check fa-lg"></i>
+        <div class="entry">
+            <div class="feed-item">
+                <div class="feed-item-body">
+                    <div class="checkmark">
+                        <i class="fas fa-check fa-lg"></i>
+                    </div>
+                    <div class="item-description">
+                        <p>User completed <%= activity.name %> on <%= activity.date.toDateString() %>
+                        </p>
+                        <button><i class="fas fa-comment fa-lg"></i>
+                            <%= activity.comments.length ? String(activity.comments.length).concat(" comments")
+                                : "Comment" %>
+                        </button>
+                    </div>
                 </div>
-                <div class="item-description">
-                    <p>User completed <%= activity.name %> on <%= activity.date.toDateString() %>
-                    </p>
-                    <button><i class="fas fa-comment fa-lg"></i> Comment </button>
-                </div>
-            </div>
-            <div class="delete-button-container">
-                <form action="/activities/<%=activity._id%>?_method=DELETE" method="POST">
-                    <button><i class="fas fa-trash fa-lg"></i></button>
-                </form>
-            </div>
-        </div>
-        <div class="comment-area">
-            <div class="comment-row">
-                <div class="column">
-                    <form class="add-comment-form" action="/activities/<%=activity._id%>/comments" method="POST">
-                        <label for="body">Comment</label>
-                        <textarea name="body" id="body" placeholder="Write a comment..."></textarea>
-                        <button>Post comment</button>
+                <div class="delete-button-container">
+                    <form action="/activities/<%=activity._id%>?_method=DELETE" method="POST">
+                        <button><i class="fas fa-trash fa-lg"></i></button>
                     </form>
                 </div>
-                <div class="column">
-                    <div class="comment-area">
-                        <% for (let comment of activity.comments) { %>
-                            <div class="comment">
-                                <div class="comment-body">
-                                    <div class="comment-user">
-                                        <i class="fas fa-user"></i>
+            </div>
+            <div class="comment-area hidden">
+                <div class="comment-row">
+                    <div class="column">
+                        <form class="add-comment-form" action="/activities/<%=activity._id%>/comments" method="POST">
+                            <label for="body">Comment</label>
+                            <textarea name="body" id="body" placeholder="Write a comment..."></textarea>
+                            <button>Post comment</button>
+                        </form>
+                    </div>
+                    <div class="column">
+                        <div class="comment-area">
+                            <% for (let comment of activity.comments) { %>
+                                <div class="comment">
+                                    <div class="comment-body">
+                                        <div class="comment-user">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>
+                                                <%= comment.body %> - <span><a href="#">User</a></span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="comment-text">
-                                        <p>
-                                            <%= comment.body %> - <span><a href="#">User</a></span>
-                                        </p>
+                                    <div class="delete-button-container">
+                                        <form
+                                            action="/activities/<%=activity._id%>/comments/<%=comment._id%>?_method=DELETE"
+                                            method="POST">
+                                            <button><i class="fas fa-trash fa-lg"></i></button>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="delete-button-container">
-                                    <form
-                                        action="/activities/<%=activity._id%>/comments/<%=comment._id%>?_method=DELETE"
-                                        method="POST">
-                                        <button><i class="fas fa-trash fa-lg"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                            <% } %>
+                                <% } %>
+                        </div>
                     </div>
                 </div>
             </div>
