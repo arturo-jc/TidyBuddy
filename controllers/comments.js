@@ -13,3 +13,9 @@ module.exports.createComment = async (req, res) => {
     await newComment.save();
     res.redirect("/")
 }
+
+module.exports.deleteComment = async (req, res) => {
+    const { commentId } = req.params;
+    await Comment.findByIdAndDelete(commentId);
+    res.redirect("/")
+}

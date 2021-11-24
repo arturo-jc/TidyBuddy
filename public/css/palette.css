@@ -1,0 +1,121 @@
+/* PRIORITY CARD */
+
+.priority {
+    background-color: #f3ddd6;
+}
+
+.priority .last-completed-date {
+    color: #ca9a8a
+}
+
+.priority .icon-inactive {
+    color: #7a331b
+}
+
+.priority .todo-item button:hover .icon-inactive {
+    color: white;
+}
+
+.priority .todo-item button {
+    color: white;
+    background-color: #AE431E
+}
+
+.priority .todo-item button:hover {
+    background-color: #c5532d
+}
+
+
+/* FREQUENT CARD */
+
+.frequent {
+    background-color: #f1efc9
+}
+
+.frequent .last-completed-date {
+    color: #bebb7f
+}
+
+.frequent .icon-inactive {
+    color: #69662a
+}
+
+.frequent .todo-item button:hover .icon-inactive {
+    color: white;
+}
+
+.frequent .todo-item button {
+    color: white;
+    background-color: #8A8635
+}
+
+.frequent .todo-item button:hover {
+    background-color: #a39e3f
+}
+
+.frequent button {
+    background-color: #8A8635;
+}
+
+.frequent button:hover {
+    background-color: #a39e3f
+}
+
+/* ADD ACTIVITY FORM */
+
+.frequent .add-form button {
+    color: #69662a;
+}
+
+.frequent .add-form button:hover {
+    color: white;
+}
+
+
+/* FEED CARD */
+
+.feed {
+    background-color: #e9e4da;
+}
+
+.feed-item {
+    background-color: #c5bfb2;
+}
+
+.feed-item button {
+    color: #646057;
+}
+
+.feed-item button:hover {
+    color: #504d45;
+}
+
+.feed-item .checkmark {
+    color: #646057;
+}
+
+/* COMMENTS */
+
+.comment button {
+    color: #928c7e;
+}
+
+.comment button:hover {
+    color: #646057;
+}
+
+.comment .comment-user {
+    color: #928c7e;
+}
+
+/* COMMENT AREA */
+
+.add-comment-form button {
+    color: #928c7e;
+    background-color: #504d45;
+}
+
+.add-comment-form button:hover {
+    color: white;
+    background-color: #928c7e;
+}

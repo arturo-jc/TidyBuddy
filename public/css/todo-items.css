@@ -1,0 +1,212 @@
+.todo-item {
+    display: flex;
+    margin: 10px 0;
+}
+
+.todo-item button {
+    border-width: 0;
+}
+
+.todo-item .mark-complete-form {
+    flex-grow: 1;
+}
+
+.todo-item .mark-complete-form button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 10px 0 0 10px;
+}
+
+.todo-item .mark-complete-form button .checkmark {
+    font-size: 1rem;
+    padding: 0 18px;
+}
+
+.todo-item .mark-complete-form button .item-body {
+    padding: 0 5px;
+    max-width: 300px;
+    margin: auto;
+}
+
+.todo-item .button-group {
+    display: flex;
+    min-width: 100px;    
+}
+
+.todo-item .button-group form {
+    display: flex;
+}
+
+.todo-item .button-group form button {
+    padding: 1px 12px;
+}
+
+
+.todo-item .button-group form .button-end {
+    border-radius: 0 10px 10px 0;
+    padding: 1px 18px 1px 12px;
+}
+
+.item-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    padding-bottom: 3px;
+}
+
+.last-completed-date {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .8rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* NEW ACTIVITY TYPE FORM */
+
+.frequent .add-form {
+    display: flex;
+}
+
+.frequent .add-form input {
+    flex-grow: 1;
+    border-width: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    padding: 10px 0 13px;
+    text-align: center;
+    border-radius: 0 10px 10px 0;
+    text-indent: -25%;
+}
+
+.frequent .add-form label {
+    display: none;
+}
+
+.frequent .add-form button {
+    border-width: 0;
+    border-radius: 16% 0 0 16%;
+    padding: 0 18px;
+}
+
+
+/* FEED ITEMS */
+
+
+.hide-comments {
+    display: none;
+}
+
+.feed-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+
+.feed-item .feed-item-body {
+    display: flex;
+}
+
+.feed-item .feed-item-body .checkmark {
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    font-size: 1rem;
+}
+
+.feed-item .feed-item-body p {
+    margin: 4px 0;
+}
+
+.feed-item .feed-item-body .item-description {
+    font-size: .9rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.feed-item button {
+    border-width: 0;
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.feed-item .delete-button-container button {
+    padding: 0 18px;
+}
+
+/* COMMENTS */
+
+.comment-area {
+    font-size: .9rem;
+    font-weight: 400;
+    width: 100%;
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment .comment-body {
+    display: flex;
+}
+
+.comment .comment-body .comment-user {
+    display: flex;
+    padding: 0 18px;
+    font-size: 1rem;
+    align-items: center;
+}
+
+.comment .comment-body .comment-text p {
+    margin: 10px 0;
+}
+
+.comment .comment-body .comment-text span {
+    font-style: italic;
+}
+
+.comment button {
+    border-width: 0;
+    background-color: transparent;
+}
+
+.comment .delete-button-container button {
+    padding: 0 18px;
+}
+
+.add-comment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.add-comment-form label {
+    display: none;
+}
+
+.add-comment-form textarea {
+    border-width: 0;
+    resize: none;
+    border-radius: 8px 8px 0 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    padding: 15px;
+}
+
+.add-comment-form button {
+    border-width: 0;
+    border-radius: 0 0 8px 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    padding: 10px 0 13px;
+}

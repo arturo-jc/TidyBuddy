@@ -1,0 +1,41 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    margin: 0 7%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column{
+    flex-grow: 1;
+    flex-basis: 50%;
+    display: flex;
+}
+
+.card {
+    margin: 0 12px 24px;
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .5);
+    flex-grow: 1;
+}
+
+.comment-row {
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+@media (max-width: 978px) {
+    .container {
+        margin: 0;
+    }
+}
+
+.card button:hover {
+    cursor: pointer;
+}
