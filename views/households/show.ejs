@@ -1,0 +1,35 @@
+<% layout("layouts/boilerplate") %>
+    <% if (household.pendingRequests.length) { %>
+        <p>Join requests</p>
+        <% for (let user of household.pendingRequests) { %>
+            <div>
+                <%= user.username %>
+                    <form action="/households/<%=household._id%>?_method=PUT" method="POST">
+                        <input type="hidden" name="action" value="acceptRequest">
+                        <input type="hidden" name="userId" value="<%=user._id%>">
+                        <button>Accept</button>
+                    </form>
+                    <form action="/households/<%=household._id%>?_method=PUT" method="POST">
+                        <input type="hidden" name="action" value="declineRequest">
+                        <input type="hidden" name="userId" value="<%=user._id%>">
+                        <button>Decline</button>
+                    </form>
+            </div>
+            <% } %>
+                <% } %>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="column">
+                                <%- include("../partials/priority-items") %>
+                            </div>
+                            <div class="column">
+                                <%- include("../partials/frequent-items") %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column">
+                                <%- include("../partials/feed") %>
+                            </div>
+                        </div>
+                    </div>

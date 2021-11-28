@@ -2,20 +2,26 @@ const { Comment } = require("../models/comment")
 const { Activity } = require("../models/activity")
 
 module.exports.createComment = async (req, res) => {
-    const { activityId } = req.params;
+    const { householdId, activityId } = req.params;
     const parentActivity = await Activity.findById(activityId);
     const newComment = new Comment({
+        user: req.user,
         body: req.body.body,
         date: new Date()
     });
     parentActivity.comments.push(newComment);
     await parentActivity.save();
     await newComment.save();
-    res.redirect("/")
+    res.redirect(`/households/${householdId}`);
 }
 
 module.exports.deleteComment = async (req, res) => {
-    const { commentId } = req.params;
+    req.flash("success", "Successfully deleted comment.")
+    const { householdId, activityId, commentId } = req.params;
+    await Activity.findByIdAndUpdate(
+        activityId,
+        { $pull: { comments: commentId } }
+    )
     await Comment.findByIdAndDelete(commentId);
-    res.redirect("/")
+    res.redirect(`/households/${householdId}`);
 }

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const { Comment } = require("./comment")
 
 const ActivitySchema = new Schema({
     name: {
@@ -10,10 +11,30 @@ const ActivitySchema = new Schema({
         type: Date,
         required: true
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     comments: [{
         type: Schema.Types.ObjectId,
         ref: "Comment"
-    }]
+    }],
+    household: {
+        type: Schema.Types.ObjectId,
+        ref: "Household",
+        required: true
+    }
+})
+
+ActivitySchema.post("findOneAndDelete", async function (doc) {
+    if (doc) {
+        await Comment.deleteMany({
+            _id: {
+                $in: doc.comments
+            }
+        })
+    }
 })
 
 module.exports.Activity = mongoose.model("Activity", ActivitySchema);

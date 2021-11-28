@@ -1,23 +1,28 @@
 // REQUIREMENTS
 
 const express = require("express");
-const mongoose = require("mongoose");
 const path = require("path");
+const mongoose = require("mongoose");
+const ejsMate = require("ejs-mate")
 const methodOverride = require("method-override");
-const session = require("express-session")
+const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const { User } = require("./models/user")
+const flash = require("connect-flash")
+const ExpressError = require("./utilities/ExpressError")
 
 // ROUTES
 const activityTypeRoutes = require("./routes/activity-types");
 const activityRoutes = require("./routes/activities");
 const commentRoutes = require("./routes/comments");
 const userRoutes = require("./routes/users")
+const householdRoutes = require("./routes/households")
 
 // MODELS
 const { ActivityType } = require("./models/activity-type");
 const { Activity } = require("./models/activity");
+const { User } = require("./models/user");
+const { Household } = require("./models/household");
 
 // DB CONNECTION
 
@@ -30,17 +35,11 @@ mongoose.connect('mongodb://localhost:27017/tidyApp')
         console.log(err)
     })
 
-// APP SET UP
+// APP
 
 const app = express();
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride("_method"));
-
-// SESSION
+// SESSION CONFIG
 
 const sessionConfig = {
     name: "session",
@@ -50,8 +49,8 @@ const sessionConfig = {
     cookie: {
         httpOnly: true,
         // secure: true,
-        // expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        // maxAge: 1000 * 60 * 60 * 24 * 7
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
 app.use(session(sessionConfig))
@@ -64,26 +63,52 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// APP SET UP
+
+app.engine("ejs", ejsMate)
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
+app.use(flash());
+
 // GLOBAL MIDDLEWARE
 
 app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
     res.locals.currentUser = req.user;
     next();
 })
 
-
 // ROUTING
 
-app.get("/", async (req, res) => {
-    const activityTypes = await ActivityType.find({}).populate("completedBy")
-    const activities = await Activity.find({}).populate("comments")
-    res.render("dashboard", { activityTypes, activities })
+app.get("/index", async (req, res) => {
+    const households = await Household.find({}).populate("users")
+    const users = await User.find({})
+    res.render("index", { users, households });
 })
 
-app.use("/", userRoutes)
-app.use("/activitytypes", activityTypeRoutes)
-app.use("/activities", activityRoutes)
-app.use("/activities/:activityId/comments", commentRoutes)
+app.use("/", userRoutes);
+app.use("/households", householdRoutes);
+app.use("/households/:householdId/activitytypes", activityTypeRoutes);
+app.use("/households/:householdId/activities", activityRoutes);
+app.use("/households/:householdId/activities/:activityId/comments", commentRoutes);
+
+// ERROR HANDLING
+
+app.all("*", (req, res, next) => {
+    next(new ExpressError("Page Not Found", 404))
+})
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = "Something went wrong."
+    res.status(statusCode).render("error", { err })
+})
+
+// LISTEN
 
 const port = 3000
 app.listen(port, () => console.log(`LISTENING ON ${port}`))

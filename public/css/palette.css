@@ -149,3 +149,56 @@ body {
 .auth-container form button:hover {
 background-color: #a39e3f;
 }
+
+/* HOUSEHOLD FORM */
+
+
+.household-form-container .card .options button {
+    color: white;
+}
+
+#existing {
+    background-color: #AE431E;
+}
+
+#existing:hover {
+    background-color: #c5532d;
+}
+#new {
+    background-color: #D06224;
+}
+#new:hover {
+    background-color: #e77634;
+}
+
+.household-form-container button {
+    color: white;
+}
+
+.household-form-container #search-household-form button {
+    background-color: #AE431E;
+}
+.household-form-container #search-household-form button:hover {
+    background-color: #c5532d;
+}
+
+.household-form-container #new-household-form button {
+    background-color: #D06224;
+}
+
+.household-form-container #new-household-form button:hover {
+    background-color: #e77634;
+}
+
+/* ALERTS */
+.alert{
+    color:white;
+}
+
+.alert-success {
+    background-color: green;
+}
+
+.alert-error {
+    background-color: red;
+}

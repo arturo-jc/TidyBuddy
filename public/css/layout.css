@@ -47,10 +47,6 @@ body {
     padding-bottom: 40px;
 }
 
-/* .auth-container .card h1 {
-    margin: auto;
-} */
-
 .auth-container form {
     display: flex;
     flex-direction: column;
@@ -88,6 +84,69 @@ body {
     padding: 12px;
     border-radius: 0 0 10px 10px;
 }
+
+/* HOUSEHOLD FORM */
+
+.household-form-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.household-form-container .card {
+    max-width: 600px;
+    text-align: center;
+}
+
+.household-form-container .card .options {
+    display: flex;
+    justify-content: center;
+}
+
+.household-form-container .card .options button {
+    border-width: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 5%;
+}
+
+.household-form-container form {
+    display: flex;
+    /* flex-direction: column;
+     */
+    max-width: 350px;
+    margin: auto;
+    padding: 5%;
+}
+
+
+.household-form-container form label {
+    display: none;
+}
+
+.household-form-container form input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9rem;
+    font-weight: 500;
+    padding: 10px 0 13px;
+    border-width: 0;
+    border-radius: 0 10px 10px 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.household-form-container form button {
+    border-width: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 10px 0 0 10px;
+} 
+
 
 /* MEDIA QUERIES */
 

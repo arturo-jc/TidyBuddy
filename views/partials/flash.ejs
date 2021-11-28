@@ -1,0 +1,21 @@
+<% if (success && success.length){ %>
+    <div class="alert alert-success">
+        <div class="message">
+            <%= success %>
+        </div>
+        <div class="button-container">
+            <button class="close"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <% } %>
+
+        <% if (error && error.length){ %>
+            <div class="alert alert-error">
+                <div class="message">
+                    <%= error %>
+                </div>
+                <div class="button-container">
+                    <button class="close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <% } %>

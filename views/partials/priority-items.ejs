@@ -1,49 +1,48 @@
 <div class="card priority">
     <h3>To Do</h3>
-    <% for (let type of activityTypes.filter(type=> type.priority > 0).sort((a, b)=> (a.priority < b.priority) ? 1 :
-            -1)) { %>
-            <div class="todo-item">
-                <form class="mark-complete-form" action="/activities" method="POST">
-                    <input type="hidden" name="typeId" value="<%= type._id %>">
-                    <button>
-                        <div class="checkmark">
-                            <i class="fas fa-check fa-lg icon-inactive"></i>
+    <% for (let item of priorityItems){ %>
+        <div class="todo-item">
+            <form class="mark-complete-form" action="/households/<%=household._id%>/activities" method="POST">
+                <input type="hidden" name="typeId" value="<%= item._id %>">
+                <button>
+                    <div class="checkmark">
+                        <i class="fas fa-check fa-lg icon-inactive"></i>
+                    </div>
+                    <div class="item-body">
+                        <div class="item-name">
+                            <%= item.name %>
                         </div>
-                        <div class="item-body">
-                            <div class="item-name">
-                                <%= type.name %>
-                            </div>
 
-                            <% if (type.completedBy.length ) { %>
-                                <div class="last-completed-date">
-                                    Last completed on <%= type.completedBy[type.completedBy.length -
-                                        1].date.toDateString() %>
-                                </div>
-                                <% } %>
-                        </div>
-                    </button>
+                        <% if (item.completedBy.length ) { %>
+                            <div class="last-completed-date">
+                                Last completed by <%= item.completedBy[item.completedBy.length - 1].user.username %>
+                                    on <%= item.completedBy[item.completedBy.length - 1].date.toDateString() %>
+                            </div>
+                            <% } %>
+                    </div>
+                </button>
+            </form>
+            <div class="button-group">
+                <form action="/households/<%=household._id%>/activitytypes/<%= item._id %>?_method=PUT" method="POST">
+                    <input type="hidden" name="action" value="unmark-to-do">
+                    <button><i class="fas fa-flag fa-lg icon-active"></i></button>
                 </form>
-                <div class="button-group">
-                    <form action="/activitytypes/<%= type._id %>?_method=PUT" method="POST">
-                        <input type="hidden" name="action" value="unmark-to-do">
-                        <button><i class="fas fa-flag fa-lg icon-active"></i></button>
-                    </form>
-                    <form action="/activitytypes/<%= type._id %>?_method=PUT" method="POST">
-                        <input type="hidden" name="action" value="toggle-priority">
-                        <input type="hidden" name="priority" value="<%= type.priority %>"">
+                <form action="/households/<%=household._id%>/activitytypes/<%= item._id %>?_method=PUT" method="POST">
+                    <input type="hidden" name="action" value="toggle-priority">
+                    <input type="hidden" name="priority" value="<%= item.priority %>"">
     <button>
-            <% for( let index=0; index < (type.priority - 1); index++ ) { %>
+            <% for( let index=0; index < (item.priority - 1); index++ ) { %>
                 <i class=" fas fa-exclamation fa-lg icon-active"></i>
-                        <% } %>
-                            <% for( let index=0; index < (3 - type.priority); index++ ) { %>
-                                <i class=" fas fa-exclamation fa-lg icon-inactive"></i>
-                                <% } %>
-                                    </button>
-                    </form>
-                    <form action="/activitytypes/<%=type._id %>?_method=DELETE" method="POST">
-                        <button class="button-end"><i class="fas fa-trash fa-lg icon-inactive"></i></button>
-                    </form>
-                </div>
+                    <% } %>
+                        <% for( let index=0; index < (3 - item.priority); index++ ) { %>
+                            <i class=" fas fa-exclamation fa-lg icon-inactive"></i>
+                            <% } %>
+                                </button>
+                </form>
+                <form action="/households/<%=household._id%>/activitytypes/<%=item._id %>?_method=DELETE" method="POST">
+                    <button class="button-end"><i class="fas fa-trash fa-lg icon-inactive"></i></button>
+                </form>
             </div>
-            <% } %>
+        </div>
+        <% } %>
 </div>

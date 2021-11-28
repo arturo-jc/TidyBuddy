@@ -1,0 +1,46 @@
+<% layout("layouts/boilerplate") %>
+    <div class="container">
+        <div class="household-form-container">
+            <div class="card">
+                <h1>Get started</h1>
+                <p>Join existing household or create new household?</p>
+                <div class="options">
+                    <button id="existing">Existing</button>
+                    <button id="new">New</button>
+                </div>
+                <div id="search-household-form" class="hidden">
+                    <form action="/households/search" id="search-household-form">
+                        <button><i class="fas fa-search"></i> Find</button>
+                        <label for="householdId">Existing household's ID</label>
+                        <input type="text" name="householdId" id="householdId" placeholder="Existing household's ID">
+                    </form>
+                </div>
+                <div id="new-household-form" class="hidden">
+                    <form action="/households" method="POST">
+                        <button><i class="fas fa-plus"></i> Create</button>
+                        <label for="name">New household's name</label>
+                        <input type="text" id="name" name="name" placeholder="New household's name">
+                    </form>
+                </div>
+                <% if (household) { %>
+                    <div>
+                        <p>
+                            <%= household.name %>
+                        </p>
+                        <p>Users:</p>
+                        <ul>
+                            <% for (let user of household.users) { %>
+                                <li>
+                                    <%= user.username %>
+                                </li>
+                                <% } %>
+                        </ul>
+                        <form action="/households/<%=household._id%>?_method=PUT" method="POST">
+                            <input type="hidden" name="action" value="sendRequest">
+                            <button>Request to join</button>
+                        </form>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>

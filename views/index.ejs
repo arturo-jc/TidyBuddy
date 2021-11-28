@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <title>Index</title>
+</head>
+
+<body>
+    <h3>Users</h3>
+
+    <% for (let user of users) { %>
+        <p>Username: <%= user.username %>, email: <%= user.email %>
+        </p>
+        <% } %>
+
+            <h3>Households</h3>
+            <% for (let household of households) { %>
+                <p><a href="/households/<%= household._id %>">
+                        <%= household.name %>
+                    </a>
+                </p>
+                <% if (household.users.length) { %>
+                    <p>Members:</p>
+                    <ul>
+                        <% for (let user of household.users ) { %>
+                            <li>
+                                <%= user.username %>
+                            </li>
+                            <% } %>
+                    </ul>
+                    <% } %>
+                        <% } %>
+</body>
+
+</html>

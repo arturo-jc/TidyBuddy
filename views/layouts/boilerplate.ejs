@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>TidyApp</title>
     <script src="https://kit.fontawesome.com/aebaafdeec.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/todo-items.css">
     <link rel="stylesheet" href="/css/layout.css">
@@ -17,25 +17,12 @@
 </head>
 
 <body>
-    <div class="container">
+    <%- include("../partials/flash") %>
         <p>
             <%= currentUser? currentUser.username : "No user is logged in" %>
         </p>
-        <div class="row">
-            <div class="column">
-                <%- include("./partials/priority-items") %>
-            </div>
-            <div class="column">
-                <%- include("./partials/frequent-items") %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <%- include("./partials/feed") %>
-            </div>
-        </div>
-    </div>
-    <script src="/js/index.js"></script>
+        <%- body %>
+            <script src="/js/index.js"></script>
 </body>
 
 </html>

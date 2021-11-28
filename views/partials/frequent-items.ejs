@@ -1,47 +1,46 @@
 <div class="card frequent">
     <h3>Frequent activities</h3>
-    <% for (let type of activityTypes) { %>
-        <% if (type.priority < 1) { %>
-            <div class="todo-item">
-                <form class="mark-complete-form" action="/activities" method="POST">
-                    <input type="hidden" name="typeId" value="<%= type._id %>">
-                    <button>
-                        <div class="checkmark">
-                            <i class="fas fa-check fa-lg icon-inactive"></i>
+    <% for (let item of frequentItems) { %>
+        <div class="todo-item">
+            <form class="mark-complete-form" action="/households/<%=household._id%>/activities" method="POST">
+                <input type="hidden" name="typeId" value="<%= item._id %>">
+                <button>
+                    <div class="checkmark">
+                        <i class="fas fa-check fa-lg icon-inactive"></i>
+                    </div>
+                    <div class="item-body">
+                        <div class="item-name">
+                            <%= item.name %>
                         </div>
-                        <div class="item-body">
-                            <div class="item-name">
-                                <%= type.name %>
+                        <% if (item.completedBy.length ) { %>
+                            <div class="last-completed-date">
+                                Last completed by <%= item.completedBy[item.completedBy.length - 1].user.username %>
+                                    on <%= item.completedBy[item.completedBy.length - 1].date.toDateString() %>
                             </div>
-                            <% if (type.completedBy.length ) { %>
-                                <div class="last-completed-date">
-                                    Last completed on <%= type.completedBy[type.completedBy.length -
-                                        1].date.toDateString() %>
-                                </div>
-                                <% } %>
-                        </div>
+                            <% } %>
+                    </div>
+                </button>
+            </form>
+            <div class="button-group">
+                <form action="/households/<%=household._id%>/activitytypes/<%=item._id %>?_method=PUT" method="POST">
+                    <input type="hidden" name="action" value="mark-to-do">
+                    <button><i class="fas fa-flag fa-lg icon-inactive"></i></button>
+                </form>
+                <form action="#">
+                    <button>
+                        <i class="fas fa-thumbtack fa-lg icon-inactive"></i>
                     </button>
                 </form>
-                <div class="button-group">
-                    <form action="/activitytypes/<%=type._id %>?_method=PUT" method="POST">
-                        <input type="hidden" name="action" value="mark-to-do">
-                        <button><i class="fas fa-flag fa-lg icon-inactive"></i></button>
-                    </form>
-                    <form action="#">
-                        <button>
-                            <i class="fas fa-thumbtack fa-lg icon-inactive"></i>
-                        </button>
-                    </form>
-                    <form action="/activitytypes/<%=type._id %>?_method=DELETE" method="POST">
-                        <button class="button-end"><i class="fas fa-trash fa-lg icon-inactive"></i></button>
-                    </form>
-                </div>
-            </div>
-            <% }} %>
-
-                <form class="add-form" action="/activitytypes/" method="POST">
-                    <label for="name">Name</label>
-                    <button><i class="fas fa-plus fa-lg"></i></button>
-                    <input type="text" name="name" id="name" placeholder="New Activity">
+                <form action="/households/<%=household._id%>/activitytypes/<%=item._id %>?_method=DELETE" method="POST">
+                    <button class="button-end"><i class="fas fa-trash fa-lg icon-inactive"></i></button>
                 </form>
+            </div>
+        </div>
+        <% } %>
+
+            <form class="add-form" action="/households/<%=household._id%>/activitytypes/" method="POST">
+                <label for="name">Name</label>
+                <button><i class="fas fa-plus fa-lg"></i></button>
+                <input type="text" name="name" id="name" placeholder="New Activity">
+            </form>
 </div>
