@@ -1,12 +1,18 @@
 /*  NAV BAR */
 
 .top-nav {
+    color: white;
     background-color: #2F4858;
 }
 
 .top-nav a {
     color: white;
     text-decoration: none;
+}
+
+.top-nav .ham-menu {
+    color: white;
+    background-color: #2F4858;
 }
 
 /* BOILERPLATE */
@@ -138,11 +144,11 @@ background-color: #f4f6f6;
 
 .auth-container form button {
     color: white;
-    background-color: #876E7D;
+    background-color: #9BAEBC;
 }
 
 .auth-container form button:hover {
-background-color: #745d6a;
+background-color: #6e8494;
 }
 
 /* HOUSEHOLD FORM */
@@ -213,11 +219,6 @@ background-color: #745d6a;
     background-color: #e0e4e6;
 }
 
-/* .household-container button:hover {
-    color: white;
-    background-color: #6e8494;
-} */
-
 /* ALERTS */
 .alert{
     color:white;
@@ -236,4 +237,43 @@ background-color: #745d6a;
 .pending-requests {
     color: #6e8494;
     background-color: #e0e4e6;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    background-color: #f4f6f6;
+}
+
+.sidebar .invite {
+    color: #2F4858;
+    background-color: #9BAEBC;
+}
+
+.sidebar .invite:hover {
+    background-color:#6e8494;
+}
+
+.household-ID {
+    color: #6e8494;
+    background-color: #e0e4e6;
+}
+
+.sidebar .accept-request{
+    color: #2F4858;
+    background-color: #9BAEBC;
+}
+.sidebar .accept-request:hover{
+    color: #2F4858;
+    background-color:#6e8494;
+}
+
+.sidebar .decline-request{
+    color: #677987;
+    background-color: #e0e4e6;
+}
+
+.sidebar .decline-request:hover{
+    color: #2F4858;
+    background-color: #9BAEBC;
 }

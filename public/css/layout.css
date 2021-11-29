@@ -1,3 +1,9 @@
+/* HTML */
+
+html {
+    height: 100%;
+}
+
 /* NAV BAR */
 
 .top-nav {
@@ -5,7 +11,7 @@
     justify-content: space-between;
 }
 
-.top-nav a {
+.top-nav .nav-logo {
     padding: 15px;
 }
 
@@ -16,13 +22,33 @@
     justify-content: flex-end;
 }
 
+.top-nav .nav-links > * {
+    padding: 15px;
+}
+
+.top-nav .ham-menu {
+    border: none;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
+    height: 100%;
 }
 
 .container {
-    margin: 50px 7%;
+    display: flex;
+    height: 100%;
+}
+
+main {
+    flex-basis: 85%;
+    padding: 20px 50px 20px 10px;
+}
+
+.sidebar {
+    padding: 20px;
+    flex-basis: 15%;
 }
 
 .row {
@@ -204,6 +230,48 @@ margin-bottom: 5px;
     padding: 0 20px;
 }
 
+/* SIDEBAR */
+
+.sidebar{
+    text-align: center;
+}
+
+.sidebar .invite{
+    border-width: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.sidebar .request-actions{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.sidebar .accept-request{
+    border-width: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+}
+
+
+.sidebar .decline-request{
+    border-width: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+
+
 /* PENDING REQUESTS */
 
 .pending-requests {
@@ -220,13 +288,45 @@ margin-bottom: 5px;
     font-style: italic;
 }
 
+/* SIDEBAR */
+
+.household-ID {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.household-ID p {
+    margin: 2px 5px;
+    font-size: .9rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
 /* MEDIA QUERIES */
 
 @media (max-width: 978px) {
-    .container {
-        margin: 25px 0;
-    }
+
     .card {
         padding: 12px;
+    }
+
+    .sidebar{
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        transition: 0.3s;
+        box-shadow: 10px 27px 20px 20px rgba(0, 0, 0, .2);
+        /* box-shadow:  10px 27px rgba(0, 0, 0, 0.05); */
+    }
+    main {
+        flex-basis: 100%;
+        padding: 20px 0;
+    }
+
+    .sidebar.active {
+        left: 0;
     }
 }

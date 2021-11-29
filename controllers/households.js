@@ -28,6 +28,7 @@ module.exports.showHousehold = async (req, res) => {
 
     const household = await Household.findById(householdId)
         .populate({ path: "pendingRequests", select: "username" })
+        .populate({ path: "users", select: "username" })
         .populate({
             path: "activityTypes",
             populate: {

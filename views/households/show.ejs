@@ -1,33 +1,58 @@
 <% layout("layouts/boilerplate") %>
-    <% if (household.pendingRequests.length) { %>
-        <p>Join requests</p>
-        <% for (let user of household.pendingRequests) { %>
-            <div>
-                <%= user.username %>
-                    <form action="/households/<%=household._id%>/accept-request?_method=PUT" method="POST">
-                        <input type="hidden" name="userId" value="<%=user._id%>">
-                        <button>Accept</button>
-                    </form>
-                    <form action="/households/<%=household._id%>/decline-request?_method=PUT" method="POST">
-                        <input type="hidden" name="userId" value="<%=user._id%>">
-                        <button>Decline</button>
-                    </form>
-            </div>
-            <% } %>
+    <div class="container">
+        <div class="sidebar">
+            <h3>
+                <%= household.name %>
+            </h3>
+            <% for (let user of household.users) { %>
+                <p>
+                    <%= user.username %>
+                </p>
                 <% } %>
+                    <button class="invite"><i class="fas fa-plus"></i> Invite</button>
+                    <div class="invite-instructions hidden">
+                        <p>Give the following ID to your housemates:</p>
+                        <div class="household-ID">
+                            <%= household._id %>
+                        </div>
 
-                    <div class="container">
-                        <div class="row">
-                            <div class="column">
-                                <%- include("../partials/priority-items") %>
-                            </div>
-                            <div class="column">
-                                <%- include("../partials/frequent-items") %>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <%- include("../partials/feed") %>
-                            </div>
-                        </div>
                     </div>
+
+                    <% if (household.pendingRequests.length) { %>
+                        <h3>Pending requests</h3>
+                        <% for (let user of household.pendingRequests) { %>
+                            <div>
+                                <%= user.username %>
+                                    <div class="request-actions">
+                                        <form action="/households/<%=household._id%>/accept-request?_method=PUT"
+                                            method="POST">
+                                            <input type="hidden" name="userId" value="<%=user._id%>">
+                                            <button class="accept-request"><i class="fas fa-check"></i> Accept</button>
+                                        </form>
+                                        <form action="/households/<%=household._id%>/decline-request?_method=PUT"
+                                            method="POST">
+                                            <input type="hidden" name="userId" value="<%=user._id%>">
+                                            <button class="decline-request"><i class="fas fa-times"></i>
+                                                Decline</button>
+                                        </form>
+                                    </div>
+                            </div>
+                            <% } %>
+                                <% } %>
+        </div>
+        <main>
+            <div class="row">
+                <div class="column">
+                    <%- include("../partials/priority-items") %>
+                </div>
+                <div class="column">
+                    <%- include("../partials/frequent-items") %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <%- include("../partials/feed") %>
+                </div>
+            </div>
+        </main>
+    </div>

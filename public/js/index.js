@@ -43,3 +43,29 @@ for (let alert of alerts) {
         alert.style.display = "none";
     })
 }
+
+// SIDEBAR BEHAVIOR
+
+const hamburgerMenu = document.querySelector(".ham-menu")
+const sidebar = document.querySelector(".sidebar")
+const main = document.querySelector("main")
+
+if (sidebar) {
+    hamburgerMenu.addEventListener("click", () => {
+        sidebar.classList.toggle("active")
+    })
+    main.addEventListener("click", () => {
+        sidebar.classList.remove("active")
+    })
+}
+
+// INVITE BUTTON BEHAVIOR
+
+const inviteButton = document.querySelector(".invite");
+const inviteInstructions = document.querySelector(".invite-instructions")
+
+if (inviteButton) {
+    inviteButton.addEventListener("click", () => {
+        inviteInstructions.classList.toggle("hidden")
+    })
+}
