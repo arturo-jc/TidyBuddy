@@ -1,9 +1,28 @@
+/* NAV BAR */
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-nav a {
+    padding: 15px;
+}
+
+.top-nav .nav-links {
+    flex-grow: 1;
+    max-width: 250px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
 }
 
 .container {
-    margin: 0 7%;
+    margin: 50px 7%;
 }
 
 .row {
@@ -21,7 +40,7 @@ body {
     margin: 0 12px 24px;
     padding: 12px 24px;
     border-radius: 20px;
-    box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .5);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
     flex-grow: 1;
 }
 
@@ -147,12 +166,67 @@ body {
     border-radius: 10px 0 0 10px;
 } 
 
+/* ALERTS */
+.alert {
+    margin: 5px;
+}
+
+/* HOUSEHOLD CONTAINER */
+
+.household-form-container .household-container {
+    display: flex;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.household-form-container .household-container .household-info {
+    flex-grow: 1;
+}
+
+.household-form-container .household-container .household-info p {
+    font-size: .9rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 0;
+}
+
+.household-form-container .household-container .household-info h3 {
+margin-bottom: 5px;
+}
+
+.household-form-container .household-container form {
+    margin: 0;
+    padding: 0;
+}
+
+.household-container form button {
+    border-radius: 0 10px 10px 0;
+    padding: 0 20px;
+}
+
+/* PENDING REQUESTS */
+
+.pending-requests {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.pending-requests p {
+    margin: 2px 5px;
+    font-size: .9rem;
+    font-weight: 400;
+    font-style: italic;
+}
 
 /* MEDIA QUERIES */
 
 @media (max-width: 978px) {
     .container {
-        margin: 0;
+        margin: 25px 0;
+    }
+    .card {
+        padding: 12px;
     }
 }
-

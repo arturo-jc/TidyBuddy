@@ -23,12 +23,12 @@
                 </button>
             </form>
             <div class="button-group">
-                <form action="/households/<%=household._id%>/activitytypes/<%= item._id %>?_method=PUT" method="POST">
-                    <input type="hidden" name="action" value="unmark-to-do">
+                <form action="/households/<%=household._id%>/activitytypes/<%= item._id %>/unmark-to-do?_method=PUT"
+                    method="POST">
                     <button><i class="fas fa-flag fa-lg icon-active"></i></button>
                 </form>
-                <form action="/households/<%=household._id%>/activitytypes/<%= item._id %>?_method=PUT" method="POST">
-                    <input type="hidden" name="action" value="toggle-priority">
+                <form action="/households/<%=household._id%>/activitytypes/<%= item._id %>/toggle-priority?_method=PUT"
+                    method="POST">
                     <input type="hidden" name="priority" value="<%= item.priority %>"">
     <button>
             <% for( let index=0; index < (item.priority - 1); index++ ) { %>

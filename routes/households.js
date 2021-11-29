@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utilities/catchAsync")
-const { findHousehold, showHousehold, updateHousehold, createHousehold } = require("../controllers/households")
+const { findHousehold, showHousehold, sendRequest, acceptRequest, declineRequest, createHousehold } = require("../controllers/households")
 
-router.get("/choose", (req, res) => {
-    res.render("households/choose", { household: null })
-})
+router.get("/find-or-create", catchAsync(findHousehold))
 
-router.get("/search", catchAsync(findHousehold))
+router.get("/:householdId", catchAsync(showHousehold))
 
-router.route("/:householdId")
-    .get(catchAsync(showHousehold))
-    .put(catchAsync(updateHousehold))
+router.put("/:householdId/send-request", catchAsync(sendRequest))
+
+router.put("/:householdId/accept-request", catchAsync(acceptRequest))
+
+router.put("/:householdId/decline-request", catchAsync(declineRequest))
 
 router.post("/", catchAsync(createHousehold))
 

@@ -1,20 +1,34 @@
+/*  NAV BAR */
+
+.top-nav {
+    background-color: #2F4858;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* BOILERPLATE */
+
 body {
-    background-color: #fdf9f1;
+    color: #2F4858;
+    background-color: #e0e4e6;
 }
 
 .card {
-    background-color: #E5DCC3;
+background-color: #f4f6f6;
 }
 
 /* PRIORITY CARD */
 
 
 .priority .last-completed-date {
-    color: #fdbda8
+    color: white;
 }
 
 .priority .icon-inactive {
-    color: #7a331b
+    color: #64505c;
 }
 
 .priority .todo-item button:hover .icon-inactive {
@@ -23,22 +37,22 @@ body {
 
 .priority .todo-item button {
     color: white;
-    background-color: #AE431E
+    background-color: #876E7D;
 }
 
 .priority .todo-item button:hover {
-    background-color: #c5532d
+    background-color: #745d6a
 }
 
 
 /* FREQUENT CARD */
 
 .frequent .last-completed-date {
-    color: #f7b791;;
+    color: white;
 }
 
 .frequent .icon-inactive {
-    color: #9e4f22
+    color: #4f606d
 }
 
 .frequent .todo-item button:hover .icon-inactive {
@@ -47,25 +61,25 @@ body {
 
 .frequent .todo-item button {
     color: white;
-    background-color: #D06224;
+    background-color: #9BAEBC;
 }
 
 .frequent .todo-item button:hover {
-    background-color: #e77634;
+    background-color: #6e8494;
 }
 
 .frequent button {
-    background-color: #D06224;
+    background-color: #9BAEBC;
 }
 
 .frequent button:hover {
-    background-color: #e77634;
+    background-color: #6e8494;
 }
 
 /* ADD ACTIVITY FORM */
 
 .frequent .add-form button {
-    color: #9e4f22;
+    color: #4f606d
 }
 
 .frequent .add-form button:hover {
@@ -76,78 +90,59 @@ body {
 /* FEED CARD */
 
 .feed-item .feed-item-body {
-    background-color: #8A8635
+    color: #677987;
+    background-color: #e0e4e6
 }
 
 .feed-item .delete-button-container button {
-    background-color: #8A8635
+    background-color: #e0e4e6
 }
 
 .feed-item button {
-    color: #69662a
+    color: #677987;
 }
 
 .feed-item button:hover {
-    background-color: #a39e3f;
+    background-color: #9BAEBC;
     color: white;
 }
 
-.feed-item .checkmark {
-    color: #69662a
-}
-
-.feed-item .feed-item-body .item-description {
-    color: white;
-}
-
-.feed-item .feed-item-body .item-description button {
-    color: #bebb7f;
-}
-.feed-item .feed-item-body .item-description button:hover {
-    background-color: #a39e3f;
-    color: white;
-}
 
 /* COMMENTS */
 
 .comment button {
-    color: #928c7e;
+    color: #9BAEBC;
 }
 
 .comment button:hover {
-    color: #69662a
+    color: #7d91a0;
 }
 
 .comment .comment-user {
-    color: #928c7e;
+    color: #9BAEBC;
 }
 
 /* COMMENT AREA */
 
 .add-comment-form button {
     color: white;
-    background-color: #928c7e;
+    background-color: #9BAEBC;
 }
 
 .add-comment-form button:hover {
     color: white;
-    background-color: #7c776b;
+    background-color: #6e8494;
 }
 
 /* AUTH FORMS */
 
 .auth-container form button {
     color: white;
-    background-color: #8A8635;
-}
-
-.auth-container form button {
-    color: white;
-    background-color: #8A8635;
+    background-color: #876E7D;
 }
 
 .auth-container form button:hover {
-background-color: #a39e3f;
+background-color: #745d6a;
 }
 
 /* HOUSEHOLD FORM */
@@ -158,17 +153,17 @@ background-color: #a39e3f;
 }
 
 #existing {
-    background-color: #AE431E;
+    background-color: #9BAEBC;
 }
 
 #existing:hover {
-    background-color: #c5532d;
+    background-color: #6e8494;
 }
 #new {
-    background-color: #D06224;
+    background-color: #876E7D;
 }
 #new:hover {
-    background-color: #e77634;
+    background-color: #745d6a;
 }
 
 .household-form-container button {
@@ -176,19 +171,52 @@ background-color: #a39e3f;
 }
 
 .household-form-container #search-household-form button {
-    background-color: #AE431E;
+    background-color: #9BAEBC;
 }
 .household-form-container #search-household-form button:hover {
-    background-color: #c5532d;
+    background-color: #6e8494;
 }
 
 .household-form-container #new-household-form button {
-    background-color: #D06224;
+    background-color: #876E7D;
 }
 
 .household-form-container #new-household-form button:hover {
-    background-color: #e77634;
+    background-color: #745d6a;
 }
+
+/* HOUSEHOLD CONTAINER */
+
+.household-container {
+    background-color: #9BAEBC;
+}
+
+.household-container button {
+    color: #2F4858;
+    background-color: #9BAEBC;
+}
+
+.household-container button:hover {
+    color: white;
+    background-color: #6e8494;
+}
+
+
+.household-container.disabled {
+    color: #6e8494;
+    background-color: #e0e4e6;
+}
+
+.household-container.disabled button {
+    cursor: default;
+    color: #6e8494;
+    background-color: #e0e4e6;
+}
+
+/* .household-container button:hover {
+    color: white;
+    background-color: #6e8494;
+} */
 
 /* ALERTS */
 .alert{
@@ -196,9 +224,16 @@ background-color: #a39e3f;
 }
 
 .alert-success {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.5)
 }
 
 .alert-error {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.5)
+}
+
+/* PENDING REQUESTS */
+
+.pending-requests {
+    color: #6e8494;
+    background-color: #e0e4e6;
 }

@@ -15,22 +15,23 @@ module.exports.addActivityType = async (req, res) => {
     res.redirect(`/households/${householdId}`);
 }
 
-module.exports.updateActivityType = async (req, res) => {
+module.exports.markToDo = async (req, res) => {
     const { householdId, typeId } = req.params;
-    const { action } = req.body;
-    switch (action) {
-        case "mark-to-do":
-            await ActivityType.findByIdAndUpdate(typeId, { $inc: { priority: 1 } });
-            break;
-        case "unmark-to-do":
-            await ActivityType.findByIdAndUpdate(typeId, { priority: 0 });
-            break;
-        case "toggle-priority":
-            let { priority } = req.body;
-            priority = (priority % 3) + 1;
-            await ActivityType.findByIdAndUpdate(typeId, { priority });
-            break;
-    }
+    await ActivityType.findByIdAndUpdate(typeId, { $inc: { priority: 1 } });
+    res.redirect(`/households/${householdId}`);
+}
+
+module.exports.unmarkToDo = async (req, res) => {
+    const { householdId, typeId } = req.params;
+    await ActivityType.findByIdAndUpdate(typeId, { priority: 0 });
+    res.redirect(`/households/${householdId}`);
+}
+
+module.exports.togglePriority = async (req, res) => {
+    const { householdId, typeId } = req.params;
+    let { priority } = req.body;
+    priority = (priority % 3) + 1;
+    await ActivityType.findByIdAndUpdate(typeId, { priority });
     res.redirect(`/households/${householdId}`);
 }
 

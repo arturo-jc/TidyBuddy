@@ -17,12 +17,10 @@
 </head>
 
 <body>
-    <%- include("../partials/flash") %>
-        <p>
-            <%= currentUser? currentUser.username : "No user is logged in" %>
-        </p>
-        <%- body %>
-            <script src="/js/index.js"></script>
+    <%- include("../partials/top-navbar") %>
+        <%- include("../partials/flash") %>
+            <%- body %>
+                <script src="/js/index.js"></script>
 </body>
 
 </html>

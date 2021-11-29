@@ -2,18 +2,25 @@ const { Household } = require("../models/household");
 const { Activity } = require("../models/activity");
 
 module.exports.findHousehold = async (req, res) => {
-    const { householdId } = req.query;
-    const household = await Household.findById(householdId)
+    let requestSent = false
+    const pendingRequests = await Household.find({ pendingRequests: req.user })
         .select("name users")
-        .populate({
-            path: "users",
-            select: "username"
-        })
-    if (household) {
-        return res.render("households/choose", { household })
+        .populate({ path: "users", select: "username" })
+    const { householdId } = req.query;
+    if (householdId) {
+        const household = await Household.findById(householdId)
+            .select("name users pendingRequests")
+            .populate({ path: "users", select: "username" })
+        if (household) {
+            if (household.pendingRequests.includes(req.user._id)) {
+                requestSent = true
+            }
+            return res.render("households/find-or-create", { household, pendingRequests, requestSent })
+        }
+        req.flash("error", `There is no household with ID ${householdId}. Please try again.`)
+        return res.redirect("/households/find-or-create")
     }
-    req.flash("error", "No household exists with that ID. Please try again.")
-    res.redirect("/households/choose")
+    res.render("households/find-or-create", { household: null, pendingRequests, requestSent })
 }
 
 module.exports.showHousehold = async (req, res) => {
@@ -51,6 +58,7 @@ module.exports.showHousehold = async (req, res) => {
                 select: "username"
             }
         })
+        .sort('-date')
 
     res.render("households/show", {
         household,
@@ -58,6 +66,43 @@ module.exports.showHousehold = async (req, res) => {
         frequentItems,
         activities
     })
+}
+
+module.exports.sendRequest = async (req, res) => {
+    const { householdId } = req.params;
+    const household = await Household.findByIdAndUpdate(
+        householdId,
+        { $addToSet: { pendingRequests: req.user } });
+    req.flash("success", "Your request has been sent")
+    res.redirect("/households/find-or-create")
+}
+
+module.exports.acceptRequest = async (req, res) => {
+    const { householdId } = req.params;
+    const { userId } = req.body;
+    const household = await Household.findOneAndUpdate(
+        householdId,
+        {
+            $pull: { pendingRequests: userId },
+            $addToSet: { users: userId }
+        }
+    )
+    req.flash("success", "Request accepted")
+    res.redirect(`/households/${household._id}`)
+}
+
+module.exports.declineRequest = async (req, res) => {
+    const { householdId } = req.params;
+    const { userId } = req.body;
+    const household = await Household.findOneAndUpdate(
+        householdId,
+        {
+            $pull: { pendingRequests: userId },
+            $addToSet: { declinedRequests: userId }
+        }
+    )
+    req.flash("success", "Request declined")
+    res.redirect(`/households/${household._id}`)
 }
 
 module.exports.updateHousehold = async (req, res) => {
@@ -68,7 +113,8 @@ module.exports.updateHousehold = async (req, res) => {
             const household = await Household.findByIdAndUpdate(
                 householdId,
                 { $addToSet: { pendingRequests: req.user } });
-            res.send("Your request has been sent")
+            req.flash("success", "Your request has been sent")
+            res.redirect(`/households/find-or-create?householdId=${household._id}`)
     }
     switch (action) {
         case "acceptRequest":
@@ -80,7 +126,8 @@ module.exports.updateHousehold = async (req, res) => {
                     $addToSet: { users: userId }
                 }
             )
-            res.send("User added")
+            req.flash("success", "Request accepted")
+            res.redirect(`/households/${household._id}`)
     }
     switch (action) {
         case "declineRequest":
@@ -92,7 +139,8 @@ module.exports.updateHousehold = async (req, res) => {
                     $addToSet: { declinedRequests: userId }
                 }
             )
-            res.send("Request declined")
+            req.flash("success", "Request declined")
+            res.redirect(`/households/${household._id}`)
     }
 }
 

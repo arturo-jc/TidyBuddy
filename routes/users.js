@@ -7,22 +7,21 @@ const catchAsync = require("../utilities/catchAsync");
 
 router.get("/", catchAsync(async (req, res) => {
     if (req.user) {
-        const household = await Household.find({ user: req.user });
+        const household = await Household.findOne({ user: req.user });
         return res.redirect(`/households/${household._id}`)
     }
     res.redirect("/login")
 }))
 
-router.get("/login", (req, res) => {
-    res.render("users/login")
-})
+router.route("/login")
+    .get((req, res) => res.render("users/login"))
+    .post(
+        passport.authenticate("local", { failureRedirect: "/login" }),
+        catchAsync(redirectUser)
+    )
 
-router.get("/register", (req, res) => {
-    res.render("users/register")
-})
-
-router.post("/register", catchAsync(createUser))
-
-router.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), catchAsync(redirectUser))
+router.route("/register")
+    .get((req, res) => res.render("users/register"))
+    .post(catchAsync(createUser))
 
 module.exports = router;

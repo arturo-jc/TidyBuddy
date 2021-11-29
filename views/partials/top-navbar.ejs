@@ -1,0 +1,13 @@
+<nav class="top-nav">
+    <a href="#">TIDY<i class="fas fa-home"></i>PP</a>
+    <div class="nav-links">
+        <% if (currentUser) { %>
+            <a href="#">
+                <%= currentUser.username %>
+            </a>
+            <% } else {%>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+                <% } %>
+    </div>
+</nav>

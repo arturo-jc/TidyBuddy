@@ -1,0 +1,8 @@
+<div class="pending-requests">
+    <p>Pending requests:
+        <% for( let index=0; index < (pendingRequests.length - 1); index++ ) { %>
+            <%= pendingRequests[index].name %>,
+                <% } %>
+                    <%= pendingRequests[pendingRequests.length - 1].name %>
+    </p>
+</div>

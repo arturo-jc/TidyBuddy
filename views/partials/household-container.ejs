@@ -1,0 +1,20 @@
+<div class="household-container <%= requestSent? 'disabled' : '' %>">
+    <div class="household-info">
+        <h3>
+            <%= household.name %>
+        </h3>
+        <p>
+            <% for( let index=0; index < (household.users.length - 1); index++ ) { %>
+                <%= household.users[index].username %> /
+                    <% } %>
+                        <%= household.users[household.users.length - 1].username %>
+        </p>
+    </div>
+    <form action="/households/<%=household._id%>/send-request?_method=PUT" method="POST">
+        <% if (requestSent) { %>
+            <button disabled><i class="fas fa-hourglass"></i> Request sent</button>
+            <% } else {%>
+                <button><i class="fas fa-hand-rock"></i> Request to join</button>
+                <% }%>
+    </form>
+</div>

@@ -22,8 +22,8 @@
                 </button>
             </form>
             <div class="button-group">
-                <form action="/households/<%=household._id%>/activitytypes/<%=item._id %>?_method=PUT" method="POST">
-                    <input type="hidden" name="action" value="mark-to-do">
+                <form action="/households/<%=household._id%>/activitytypes/<%=item._id %>/mark-to-do?_method=PUT"
+                    method="POST">
                     <button><i class="fas fa-flag fa-lg icon-inactive"></i></button>
                 </form>
                 <form action="#">

@@ -4,13 +4,11 @@
         <% for (let user of household.pendingRequests) { %>
             <div>
                 <%= user.username %>
-                    <form action="/households/<%=household._id%>?_method=PUT" method="POST">
-                        <input type="hidden" name="action" value="acceptRequest">
+                    <form action="/households/<%=household._id%>/accept-request?_method=PUT" method="POST">
                         <input type="hidden" name="userId" value="<%=user._id%>">
                         <button>Accept</button>
                     </form>
-                    <form action="/households/<%=household._id%>?_method=PUT" method="POST">
-                        <input type="hidden" name="action" value="declineRequest">
+                    <form action="/households/<%=household._id%>/decline-request?_method=PUT" method="POST">
                         <input type="hidden" name="userId" value="<%=user._id%>">
                         <button>Decline</button>
                     </form>
