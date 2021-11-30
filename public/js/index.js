@@ -48,6 +48,7 @@ for (let alert of alerts) {
 
 const hamburgerMenu = document.querySelector(".ham-menu")
 const sidebar = document.querySelector(".sidebar")
+const navLinks = document.querySelector(".nav-links")
 const main = document.querySelector("main")
 
 if (sidebar) {
@@ -57,7 +58,17 @@ if (sidebar) {
     main.addEventListener("click", () => {
         sidebar.classList.remove("active")
     })
+} else {
+    hamburgerMenu.addEventListener("click", () => {
+        console.log("clicked")
+        navLinks.classList.toggle("active")
+    })
+    main.addEventListener("click", () => {
+        navLinks.classList.remove("active")
+    })
 }
+
+
 
 // INVITE BUTTON BEHAVIOR
 

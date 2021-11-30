@@ -1,4 +1,3 @@
-const { serializeUser } = require("passport");
 const { User } = require("../models/user")
 const { Household } = require("../models/household")
 
@@ -8,7 +7,6 @@ module.exports.createUser = async (req, res) => {
     const user = await User.register(newUser, password);
     req.login(user, err => {
         if (err) return next(err);
-        req.flash("success", "Welcome to TidyApp!");
         res.redirect("/households/find-or-create")
     });
 }

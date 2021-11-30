@@ -9,24 +9,21 @@ html {
 .top-nav {
     display: flex;
     justify-content: space-between;
-}
-
-.top-nav .nav-logo {
     padding: 15px;
 }
 
-.top-nav .nav-links {
-    flex-grow: 1;
+.top-nav .right-links {
     max-width: 250px;
     display: flex;
-    justify-content: flex-end;
 }
 
-.top-nav .nav-links > * {
-    padding: 15px;
+.top-nav .nav-links a {
+    padding: 0 15px;
 }
 
 .top-nav .ham-menu {
+    cursor: pointer;
+    display: none;
     border: none;
 }
 
@@ -41,9 +38,9 @@ body {
     height: 100%;
 }
 
-main {
+.dashboard-main {
     flex-basis: 85%;
-    padding: 20px 50px 20px 10px;
+    padding: 0 50px 0 10px;
 }
 
 .sidebar {
@@ -63,7 +60,7 @@ main {
 }
 
 .card {
-    margin: 0 12px 24px;
+    margin: 12px;
     padding: 12px 24px;
     border-radius: 20px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
@@ -79,31 +76,31 @@ main {
     flex-wrap: wrap-reverse;
 }
 
-/* lOGIN/REGISTER FORMS */
-
-.auth-container {
+main {
     display: flex;
     justify-content: center;
 }
 
-.auth-container .card {
+main .card {
     max-width: 600px;
     text-align: center;
     padding-bottom: 40px;
 }
 
-.auth-container form {
+/* lOGIN/REGISTER FORMS */
+
+.auth-main form {
     display: flex;
     flex-direction: column;
     max-width: 350px;
     margin: auto;
 }
 
-.auth-container form label {
+.auth-main form label {
     display: none;
 }
 
-.auth-container form input {
+.auth-main form input {
     font-family: 'Montserrat', sans-serif;
     font-size: .9rem;
     font-weight: 500;
@@ -113,15 +110,15 @@ main {
     border-color: rgba(190, 190, 190, 0.8)
 }
 
-.auth-container form input:nth-of-type(1) {
+.auth-main form input:nth-of-type(1) {
     border-radius: 10px 10px 0 0;
 }
 
-.auth-container form input:last-of-type {
+.auth-main form input:last-of-type {
     border-width: 0;
 }
 
-.auth-container form button {
+.auth-main form button {
     border-width: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.25rem;
@@ -132,23 +129,12 @@ main {
 
 /* HOUSEHOLD FORM */
 
-.household-form-container {
+.household-main .card .options {
     display: flex;
     justify-content: center;
 }
 
-
-.household-form-container .card {
-    max-width: 600px;
-    text-align: center;
-}
-
-.household-form-container .card .options {
-    display: flex;
-    justify-content: center;
-}
-
-.household-form-container .card .options button {
+.household-main .card .options button {
     border-width: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.25rem;
@@ -158,7 +144,7 @@ main {
     margin: 5%;
 }
 
-.household-form-container form {
+.household-main form {
     display: flex;
     /* flex-direction: column;
      */
@@ -168,11 +154,11 @@ main {
 }
 
 
-.household-form-container form label {
+.household-main form label {
     display: none;
 }
 
-.household-form-container form input {
+.household-main form input {
     font-family: 'Montserrat', sans-serif;
     font-size: .9rem;
     font-weight: 500;
@@ -183,7 +169,7 @@ main {
     text-align: center;
 }
 
-.household-form-container form button {
+.household-main form button {
     border-width: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.25rem;
@@ -199,28 +185,28 @@ main {
 
 /* HOUSEHOLD CONTAINER */
 
-.household-form-container .household-container {
+.household-container {
     display: flex;
     border-radius: 10px;
     margin-bottom: 10px;
 }
 
-.household-form-container .household-container .household-info {
+.household-container .household-info {
     flex-grow: 1;
 }
 
-.household-form-container .household-container .household-info p {
+.household-container .household-info p {
     font-size: .9rem;
     font-weight: 400;
     font-style: italic;
     margin-top: 0;
 }
 
-.household-form-container .household-container .household-info h3 {
+.household-container .household-info h3 {
 margin-bottom: 5px;
 }
 
-.household-form-container .household-container form {
+.household-container form {
     margin: 0;
     padding: 0;
 }
@@ -233,7 +219,9 @@ margin-bottom: 5px;
 /* SIDEBAR */
 
 .sidebar{
+    height: 100%;
     text-align: center;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
 }
 
 .sidebar .invite{
@@ -307,6 +295,32 @@ margin-bottom: 5px;
 
 @media (max-width: 978px) {
 
+    .top-nav .ham-menu {
+        display: block;
+    }
+
+    .top-nav .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        transition: 0.3s;
+        box-shadow: 10px 27px 20px 20px rgba(0, 0, 0, .2);
+    }
+
+    .top-nav .nav-links.active {
+        left: 0;
+    }
+
+    .top-nav .nav-links a {
+        margin-bottom: 20px;
+    }
+
     .card {
         padding: 12px;
     }
@@ -319,14 +333,14 @@ margin-bottom: 5px;
         height: 100%;
         transition: 0.3s;
         box-shadow: 10px 27px 20px 20px rgba(0, 0, 0, .2);
-        /* box-shadow:  10px 27px rgba(0, 0, 0, 0.05); */
-    }
-    main {
-        flex-basis: 100%;
-        padding: 20px 0;
     }
 
     .sidebar.active {
         left: 0;
+    }
+
+    .dashboard-main {
+        flex-basis: 100%;
+        padding: 0;
     }
 }

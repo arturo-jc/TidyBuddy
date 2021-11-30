@@ -2,7 +2,7 @@
 
 .top-nav {
     color: white;
-    background-color: #2F4858;
+    background: linear-gradient(#253946, #2F4858);
 }
 
 .top-nav a {
@@ -12,7 +12,7 @@
 
 .top-nav .ham-menu {
     color: white;
-    background-color: #2F4858;
+    background-color: transparent;
 }
 
 /* BOILERPLATE */
@@ -142,19 +142,19 @@ background-color: #f4f6f6;
 
 /* AUTH FORMS */
 
-.auth-container form button {
+.auth-main form button {
     color: white;
     background-color: #9BAEBC;
 }
 
-.auth-container form button:hover {
+.auth-main form button:hover {
 background-color: #6e8494;
 }
 
 /* HOUSEHOLD FORM */
 
 
-.household-form-container .card .options button {
+.household-main .card .options button {
     color: white;
 }
 
@@ -172,22 +172,22 @@ background-color: #6e8494;
     background-color: #745d6a;
 }
 
-.household-form-container button {
+.household-main button {
     color: white;
 }
 
-.household-form-container #search-household-form button {
+.household-main #search-household-form button {
     background-color: #9BAEBC;
 }
-.household-form-container #search-household-form button:hover {
+.household-main #search-household-form button:hover {
     background-color: #6e8494;
 }
 
-.household-form-container #new-household-form button {
+.household-main #new-household-form button {
     background-color: #876E7D;
 }
 
-.household-form-container #new-household-form button:hover {
+.household-main #new-household-form button:hover {
     background-color: #745d6a;
 }
 
@@ -276,4 +276,15 @@ background-color: #6e8494;
 .sidebar .decline-request:hover{
     color: #2F4858;
     background-color: #9BAEBC;
+}
+
+
+@media (max-width: 978px) {
+    .top-nav .nav-links a {
+        color: #2F4858;
+    }
+
+    .top-nav .nav-links {
+        background-color: #f4f6f6;
+    }
 }

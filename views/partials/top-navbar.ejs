@@ -1,16 +1,19 @@
 <nav class="top-nav">
-    <a href="#" class="nav-logo">TIDY<i class="fas fa-home"></i>PP</a>
-    <div class="nav-links">
-        <% if (currentUser) { %>
-            <a href="#">
-                <%= currentUser.username %>
-            </a>
-            <% } else {%>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-                <% } %>
-                    <button class="ham-menu">
-                        <i class="fas fa-bars fa-lg"></i>
-                    </button>
+    <a href="/" class="nav-logo">TIDY<i class="fas fa-home"></i>PP</a>
+    <div class="right-links">
+        <div class="nav-links">
+            <% if (currentUser) { %>
+
+                <a href="#">
+                    <%= currentUser.username %>
+                </a>
+                <% } else {%>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                    <% } %>
+        </div>
+        <button class="ham-menu">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
     </div>
 </nav>
