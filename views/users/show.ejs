@@ -12,13 +12,22 @@
             <% } else {%>
                 <div class="thumbnail thumbnail-LG blank"></div>
                 <% } %>
-                <p class="filename">  </p>
+            <% if (user.equals(currentUser._id)) { %>
+                <h2>Set profile picture</h2>
                 <div class="set-profile-area">
-                <button class="set-profile">Choose file</button>
-            <form action="/users/<%=user._id%>/profile-pic?_method=PUT" method="POST" enctype="multipart/form-data">
-            <input type="file" name="profile-pic" id="profile-pic">
-            <button class="upload">Upload</button>
-            </form>
-        </div>
+                    <div class="choose-file-area">
+                        <button class="set-profile"><i class="fas fa-hand-point-up"></i> Choose file</button>
+                        <div class="filename">No file selected</div>
+                    </div>
+                    <form action="/users/<%=user._id%>/profile-pic?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="profile-pic" id="profile-pic">
+                        <button class="upload"><i class="fas fa-arrow-circle-up"></i> Upload</button>
+                    </form>
+                </div> 
+                <h2>Account</h2>
+                <p><a href="/logout">Log out</a></p>
+                <p><a href="#">Change password</a></p>
+                <p><a href="#">Delete account</a></p>
+            <% } %>
         </div>
     </main>

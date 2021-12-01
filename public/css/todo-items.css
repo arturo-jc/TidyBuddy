@@ -176,6 +176,10 @@
     line-height: 1.5rem;
 }
 
+.comment-text p {
+    margin: 10px 0;
+}
+
 .comment .comment-body {
     display: flex;
 }
@@ -252,4 +256,8 @@
 .alert button {
     border-width: 0;
     background-color: transparent;
+}
+
+.alert button:hover{
+    cursor: pointer;
 }

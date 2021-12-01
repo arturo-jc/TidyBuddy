@@ -18,10 +18,10 @@
                     </div>
                 </div>
                 <div class="delete-button-container">
-                    <form action="/households/<%=household._id%>/activities/<%=activity._id%>?_method=DELETE"
-                        method="POST">
-                        <button><i class="fas fa-trash fa-lg"></i></button>
-                    </form>
+                        <form action="/households/<%=household._id%>/activities/<%=activity._id%>?_method=DELETE"
+                            method="POST">
+                            <button <%= activity.user.equals(currentUser._id)? "" : "class=inactive" %>><i class="fas fa-trash fa-lg"></i></button>
+                        </form>
                 </div>
             </div>
             <div class="comment-area hidden">
@@ -53,11 +53,13 @@
                                         </div>
                                     </div>
                                     <div class="delete-button-container">
-                                        <form
+                                        <% if (comment.user.equals(currentUser._id)) { %>
+                                            <form
                                             action="/households/<%=household._id%>/activities/<%=activity._id%>/comments/<%=comment._id%>?_method=DELETE"
                                             method="POST">
                                             <button><i class="fas fa-trash fa-lg"></i></button>
                                         </form>
+                                        <% } %>
                                     </div>
                                 </div>
                                 <% } %>

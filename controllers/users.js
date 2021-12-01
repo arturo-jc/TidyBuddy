@@ -14,11 +14,10 @@ module.exports.createUser = async (req, res) => {
 }
 
 module.exports.redirectUponLogin = async (req, res) => {
-    const household = await Household.findOne({ users: req.user });
-    if (household) {
-        return res.redirect(`/households/${household._id}`);
-    }
-    res.redirect("/households/find-or-create");
+    const redirectUrl = req.session.returnTo || "/"
+    delete req.session.returnTo
+    return res.redirect(redirectUrl)
+    res.redirect(redirectUrl);
 }
 
 module.exports.updateProfilePic = async (req, res) => {

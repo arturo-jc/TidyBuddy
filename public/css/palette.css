@@ -108,9 +108,21 @@ background-color: #f4f6f6;
     color: #677987;
 }
 
+.feed-item button.inactive {
+    color: #e0e4e6;
+}
+
 .feed-item button:hover {
     background-color: #9BAEBC;
     color: white;
+}
+
+
+.feed-item button.inactive:hover {
+    background-color: #e0e4e6;
+    color: #e0e4e6;
+    cursor: default;
+    pointer-events: none;
 }
 
 .feed-item .item-description a{
@@ -236,11 +248,15 @@ background-color: #6e8494;
 }
 
 .alert-success {
-    background-color: #4BBC8E;
+    background-color: #4bbc8f8f;
 }
 
 .alert-error {
-    background-color: #884E59;
+    background-color: #884e59ad;
+}
+
+.alert button {
+    color: white;
 }
 
 /* PENDING REQUESTS */
@@ -299,21 +315,32 @@ background-color: #6e8494;
 
 /* USER PROFILE */
 
-.set-profile{
+.set-profile {
     color: #2F4858;
     background-color: #9BAEBC;
 }
+
 .set-profile:hover {
-    color: #2F4858;
     background-color:#6e8494;
 }
+
+.choose-file-area{
+    background-color: white;
+}
+
+.upload{
+    color: white;
+}
+
 .upload {
-    color: #677987;
-    background-color: #e0e4e6;
+    background-color: #876E7D;
 }
 .upload:hover {
-    color: #2F4858;
-    background-color: #9BAEBC;
+    background-color: #745d6a;
+}
+
+.user-main .card a{
+    color: #039590
 }
 
 @media (max-width: 978px) {

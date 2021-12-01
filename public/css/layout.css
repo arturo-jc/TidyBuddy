@@ -228,7 +228,7 @@ margin-bottom: 5px;
 }
 
 .sidebar .invite{
-    margin: 10px 0;
+    margin: 30px 0;
     border-width: 0;
     font-size: 1rem;
     font-weight: 500;
@@ -330,29 +330,41 @@ margin-bottom: 5px;
 }
 
 .thumbnail-LG {
-    margin: auto;
+    margin: 16px 0;
     width: 200px;
     height: 200px;
 }
 
-.set-profile-area {
-    margin: auto;
+.choose-file-area{
     display: flex;
-    flex-direction: column;
-    max-width: 350px;
+    align-items: center;
+    border-radius: 10px;
+    margin: 20px 0;
 }
 
 .set-profile{
     border-width: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 500;
-    padding: 24px 12px;
-    border-radius: 10px 10px 0 0;
+    padding: 6px 12px;
+    border-radius: 10px 0 0 10px;
 }
 
-.set-profile-area form {
+.filename{
+    padding: 0 20px;
+    font-size: .9rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.user-main input[type=file]{
+    display: none;
+}
+
+.user-main .card {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .upload{
@@ -360,13 +372,9 @@ margin-bottom: 5px;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.25rem;
     font-weight: 500;
-    padding: 24px 12px;
-    border-radius: 0 0  10px 10px;
-    flex-grow: 1;
-}
-
-.user-main input[type=file]{
-    display: none;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 30px 0;
 }
 
 /* MEDIA QUERIES */

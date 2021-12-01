@@ -92,6 +92,6 @@ if (setProfileButton) {
         chooseFileInput.click()
     })
     chooseFileInput.addEventListener("change", ()=>{
-        filename.textContent = `chosen file: ${chooseFileInput.files[0].name}`
+        filename.textContent = chooseFileInput.files[0].name
     })
 }
