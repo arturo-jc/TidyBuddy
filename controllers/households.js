@@ -1,7 +1,7 @@
 const { Household } = require("../models/household");
 const { Activity } = require("../models/activity");
 
-module.exports.findHousehold = async (req, res) => {
+module.exports.displaySearchResults = async (req, res) => {
     let requestSent = false
     const pendingRequests = await Household.find({ pendingRequests: req.user })
         .select("name users")

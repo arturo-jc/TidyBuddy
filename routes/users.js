@@ -4,6 +4,7 @@ const { createUser, redirectUponLogin, updateProfilePic, showUserProfile, takeUs
 const { Household } = require("../models/household")
 const passport = require("passport");
 const catchAsync = require("../utilities/catchAsync");
+const { ownsAccount } = require("../middleware")
 const multer = require("multer");
 const { storage, cloudinary } = require("../cloudinary")
 const upload = multer({ storage });
@@ -23,6 +24,6 @@ router.route("/register")
 
 router.get("/users/:userId", catchAsync(showUserProfile))
 
-router.put("/users/:userId/profile-pic", upload.single("profile-pic"), catchAsync(updateProfilePic))
+router.put("/users/:userId/profile-pic", ownsAccount, upload.single("profile-pic"), catchAsync(updateProfilePic))
 
 module.exports = router;
