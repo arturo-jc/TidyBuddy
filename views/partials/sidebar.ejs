@@ -3,9 +3,18 @@
         <%= household.name %>
     </h3>
     <% for (let user of household.users) { %>
-        <p>
-            <%= user.username %>
-        </p>
+        <div class="sidebar-user">
+            <% if (user.profilePic) { %>
+                <img class="thumbnail thumbnail-SM" src="<%=user.profilePic.thumbnailSm%>" alt="">
+                <% } else {%>
+                    <div class="thumbnail thumbnail-SM blank"><i class="fas fa-user fa-lg"></i></div>
+                    <% } %>
+                        <div class="username">
+                            <a href="/users/<%=user._id%>">
+                                <%= user.username %>
+                            </a>
+                        </div>
+        </div>
         <% } %>
             <button class="invite"><i class="fas fa-plus"></i> Invite</button>
             <div class="invite-instructions hidden">
@@ -17,9 +26,9 @@
             </div>
 
             <% if (household.pendingRequests.length) { %>
-                <h3>Pending requests</h3>
+                <h3 class="pending-requests-heading">Pending requests</h3>
                 <% for (let user of household.pendingRequests) { %>
-                    <div>
+                    <div class="request">
                         <%= user.username %>
                             <div class="request-actions">
                                 <form action="/households/<%=household._id%>/accept-request?_method=PUT" method="POST">

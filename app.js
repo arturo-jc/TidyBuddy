@@ -1,5 +1,9 @@
 // REQUIREMENTS
 
+if (process.env.NODE_ENV !== "production"){
+    require("dotenv").config()
+}
+
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -35,7 +39,7 @@ mongoose.connect('mongodb://localhost:27017/tidyApp')
         console.log(err)
     })
 
-// APP
+// INSTANTIATIONS
 
 const app = express();
 

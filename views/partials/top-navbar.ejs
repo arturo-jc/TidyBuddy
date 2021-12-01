@@ -3,8 +3,7 @@
     <div class="right-links">
         <div class="nav-links">
             <% if (currentUser) { %>
-
-                <a href="#">
+                <a href="/users/<%=currentUser._id%>">
                     <%= currentUser.username %>
                 </a>
                 <% } else {%>

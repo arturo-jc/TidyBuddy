@@ -50,17 +50,17 @@ const hamburgerMenu = document.querySelector(".ham-menu")
 const sidebar = document.querySelector(".sidebar")
 const navLinks = document.querySelector(".nav-links")
 const main = document.querySelector("main")
+const dashboardMain = document.querySelector(".dashboard-main")
 
 if (sidebar) {
     hamburgerMenu.addEventListener("click", () => {
         sidebar.classList.toggle("active")
     })
-    main.addEventListener("click", () => {
+    dashboardMain.addEventListener("click", () => {
         sidebar.classList.remove("active")
     })
 } else {
     hamburgerMenu.addEventListener("click", () => {
-        console.log("clicked")
         navLinks.classList.toggle("active")
     })
     main.addEventListener("click", () => {
@@ -78,5 +78,20 @@ const inviteInstructions = document.querySelector(".invite-instructions")
 if (inviteButton) {
     inviteButton.addEventListener("click", () => {
         inviteInstructions.classList.toggle("hidden")
+    })
+}
+
+// CHOOSE FILE BUTTON FUNCTIONALITY
+
+const setProfileButton = document.querySelector(".set-profile")
+const chooseFileInput = document.querySelector(".set-profile-area input")
+const filename = document.querySelector(".filename")
+
+if (setProfileButton) {
+    setProfileButton.addEventListener("click", () =>{
+        chooseFileInput.click()
+    })
+    chooseFileInput.addEventListener("change", ()=>{
+        filename.textContent = `chosen file: ${chooseFileInput.files[0].name}`
     })
 }

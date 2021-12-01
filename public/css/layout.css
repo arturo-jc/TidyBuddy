@@ -43,10 +43,6 @@ body {
     padding: 0 50px 0 10px;
 }
 
-.sidebar {
-    padding: 20px;
-    flex-basis: 15%;
-}
 
 .row {
     display: flex;
@@ -146,8 +142,6 @@ main .card {
 
 .household-main form {
     display: flex;
-    /* flex-direction: column;
-     */
     max-width: 350px;
     margin: auto;
     padding: 5%;
@@ -219,12 +213,22 @@ margin-bottom: 5px;
 /* SIDEBAR */
 
 .sidebar{
-    height: 100%;
-    text-align: center;
+    padding: 20px;
+    flex-basis: 15%;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
+    text-align: center;
+}
+
+.sidebar h3 {
+    margin: 10px 0;
+}
+
+.sidebar h3.pending-requests-heading{
+    margin: 30px 0 10px 0;
 }
 
 .sidebar .invite{
+    margin: 10px 0;
     border-width: 0;
     font-size: 1rem;
     font-weight: 500;
@@ -258,6 +262,22 @@ margin-bottom: 5px;
     cursor: pointer;
 }
 
+.sidebar-user {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-user .username {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* .sidebar-user a {
+    max-width: 50px;
+} */
 
 
 /* PENDING REQUESTS */
@@ -276,6 +296,10 @@ margin-bottom: 5px;
     font-style: italic;
 }
 
+.request {
+    text-align: center;
+}
+
 /* SIDEBAR */
 
 .household-ID {
@@ -289,6 +313,60 @@ margin-bottom: 5px;
     font-size: .9rem;
     font-weight: 400;
     font-style: italic;
+}
+
+/* USER PROFILES */
+
+.thumbnail {
+    border-radius: 50%;
+}
+
+.thumbnail-SM {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail-LG {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.set-profile-area {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+.set-profile{
+    border-width: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 24px 12px;
+    border-radius: 10px 10px 0 0;
+}
+
+.set-profile-area form {
+    display: flex;
+}
+
+.upload{
+    border-width: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 24px 12px;
+    border-radius: 0 0  10px 10px;
+    flex-grow: 1;
+}
+
+.user-main input[type=file]{
+    display: none;
 }
 
 /* MEDIA QUERIES */

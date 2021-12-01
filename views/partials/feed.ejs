@@ -9,8 +9,7 @@
                     </div>
                     <div class="item-description">
                         <p>
-                            <%= activity.user.username %> completed <%= activity.name %> on <%=
-                                        activity.date.toDateString() %>
+                            <a href="/users/<%= activity.user._id %>"><%=activity.user.username%></a> completed <%= activity.name %> on <%= activity.date.toLocaleDateString() %> at <%= activity.date.toLocaleTimeString() %>
                         </p>
                         <button><i class="fas fa-comment fa-lg"></i>
                             <%= activity.comments.length ? String(activity.comments.length).concat(" comments")
@@ -40,14 +39,16 @@
                             <% for (let comment of activity.comments) { %>
                                 <div class="comment">
                                     <div class="comment-body">
-                                        <div class="comment-user">
-                                            <i class="fas fa-user"></i>
-                                        </div>
+                                        <% if (comment.user.profilePic) { %>
+                                            <img class="thumbnail thumbnail-SM" src="<%=comment.user.profilePic.thumbnailSm%>" alt="">
+                                            <% } else {%>
+                                                <div class="thumbnail thumbnail-SM blank"><i class="fas fa-user fa-lg"></i></div>
+                                                <% } %>
                                         <div class="comment-text">
                                             <p>
-                                                <%= comment.body %> - <span><a href="#">
-                                                            <%=comment.user.username%>
-                                                        </a></span>
+                                                <%= comment.body %>
+                                            </p>
+                                            <p class="comment-details">Posted by <span class="comment-user"><a href="/users/<%=comment.user._id%>"><%=comment.user.username%></a></span> on <%= comment.date.toLocaleDateString() %> at <%= comment.date.toLocaleTimeString() %>
                                             </p>
                                         </div>
                                     </div>

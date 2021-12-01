@@ -1,0 +1,24 @@
+<% layout("layouts/boilerplate") %>
+    <main class="user-main">
+        <div class="card">
+            <h1>
+                <%= user.username %>
+            </h1>
+            <p>
+                <%= user.email %>
+            </p>
+            <% if (user.profilePic) { %>
+             <img class="thumbnail thumbnail-LG" src="<%= user.profilePic.thumbnailLg %>" alt="profile picture">
+            <% } else {%>
+                <div class="thumbnail thumbnail-LG blank"></div>
+                <% } %>
+                <p class="filename">  </p>
+                <div class="set-profile-area">
+                <button class="set-profile">Choose file</button>
+            <form action="/users/<%=user._id%>/profile-pic?_method=PUT" method="POST" enctype="multipart/form-data">
+            <input type="file" name="profile-pic" id="profile-pic">
+            <button class="upload">Upload</button>
+            </form>
+        </div>
+        </div>
+    </main>

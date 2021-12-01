@@ -28,7 +28,7 @@ module.exports.showHousehold = async (req, res) => {
 
     const household = await Household.findById(householdId)
         .populate({ path: "pendingRequests", select: "username" })
-        .populate({ path: "users", select: "username" })
+        .populate({ path: "users", select: "username profilePic" })
         .populate({
             path: "activityTypes",
             populate: {
@@ -56,7 +56,10 @@ module.exports.showHousehold = async (req, res) => {
             path: "comments",
             populate: {
                 path: "user",
-                select: "username"
+                select: "username",
+                populate: {
+                    path: "profilePic"
+                }
             }
         })
         .sort('-date')

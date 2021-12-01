@@ -165,33 +165,34 @@
 }
 
 .comment {
+    margin: 5px 0px 5px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.comment-text {
+    padding-left: 10px;
+    line-height: 1.5rem;
 }
 
 .comment .comment-body {
     display: flex;
 }
 
-.comment .comment-body .comment-user {
-    display: flex;
-    padding: 0 18px;
-    font-size: 1rem;
-    align-items: center;
-}
-
-.comment .comment-body .comment-text p {
-    margin: 10px 0;
-}
-
-.comment .comment-body .comment-text span {
+.comment .comment-body .comment-text .comment-details {
+    font-size: .8rem;
+    font-weight: 400;
     font-style: italic;
 }
 
 .comment button {
     border-width: 0;
     background-color: transparent;
+}
+
+.comment .delete-button-container {
+    align-self: flex-start;
 }
 
 .comment .delete-button-container button {
