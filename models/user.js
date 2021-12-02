@@ -22,7 +22,7 @@ ProfilePicSchema.virtual("thumbnailSm").get(function(){
 const UserSchema = new Schema({
     email: {
         type: String,
-        required: true,
+        required: [true, "No email was given."],
         unique: true
     },
     profilePic: ProfilePicSchema

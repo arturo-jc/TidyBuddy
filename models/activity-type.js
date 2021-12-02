@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ActivityTypeSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: [true, "Your task needs a name."]
     },
     pinned: {
         type: Boolean,

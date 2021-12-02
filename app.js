@@ -12,8 +12,9 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const flash = require("connect-flash")
-const ExpressError = require("./utilities/ExpressError")
+const flash = require("connect-flash");
+const ExpressError = require("./utilities/ExpressError");
+const {getModel, getReason, returnTo } = require("./utilities/mongooseErrors");
 
 // ROUTES
 const activityTypeRoutes = require("./routes/activity-types");
@@ -23,8 +24,6 @@ const userRoutes = require("./routes/users")
 const householdRoutes = require("./routes/households")
 
 // MODELS
-const { ActivityType } = require("./models/activity-type");
-const { Activity } = require("./models/activity");
 const { User } = require("./models/user");
 const { Household } = require("./models/household");
 
@@ -109,6 +108,20 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
+    const returnUrl = returnTo(req) || "/register"
+    switch (err.name){
+        case "CastError":
+            const model = getModel(err)
+            err.message = `Sorry, no ${model} matches that ID`;
+            return res.status(statusCode).render("error", { err })
+        case "ValidationError":
+            req.flash("error", getReason(err))
+            return res.redirect(returnUrl)
+        case "MissingUsernameError":
+        case "MissingPasswordError":
+            req.flash("error", err.message)
+            return res.redirect(returnUrl)
+    }
     if (!err.message) err.message = "Something went wrong."
     res.status(statusCode).render("error", { err })
 })

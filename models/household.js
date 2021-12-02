@@ -5,7 +5,7 @@ const HouseholdSchema = new Schema(
     {
         name: {
             type: String,
-            required: true
+            required: [true, "Your household needs a name."]
         },
         users: [{
             type: Schema.Types.ObjectId,

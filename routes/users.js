@@ -3,7 +3,6 @@ const router = express.Router();
 const { createUser, redirectUponLogin, updateProfilePic, showUserProfile, takeUserToMain, serveChangePasswordForm, changePassword, serveDeleteForm, deleteAccount } = require("../controllers/users")
 const passport = require("passport");
 const catchAsync = require("../utilities/catchAsync");
-const catchAsyncFlash = require("../utilities/catchAsyncFlash");
 const { isLoggedIn, ownsAccount } = require("../middleware")
 const multer = require("multer");
 const { storage, cloudinary } = require("../cloudinary")
@@ -26,7 +25,7 @@ router.get("/logout", (req, res) => {
 
 router.route("/register")
     .get((req, res) => res.render("users/register"))
-    .post(catchAsyncFlash(createUser))
+    .post(catchAsync(createUser))
 
 router.get("/users/:userId", isLoggedIn, catchAsync(showUserProfile))
 
