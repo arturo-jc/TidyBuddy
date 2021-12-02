@@ -11,9 +11,7 @@ module.exports.getReason = validationErr => {
 module.exports.returnTo = req => {
     if (req.method === "POST"){
         const urlArr = req.originalUrl.split("/")
-        console.log(`urlArr: ${urlArr}`)
         const resource = urlArr[urlArr.length - 1]
-        console.log(`Resource: ${resource}`)
         switch (resource){
             case "households":
                 return "/households/find-or-create";
@@ -24,9 +22,3 @@ module.exports.returnTo = req => {
     } 
     return req.originalUrl
 }
-
-// Cases to handle
-// If they post to:
-// /households/:householdId/activitytypes
-// /households/:householdId/activities/:activityId/comments
-// Default

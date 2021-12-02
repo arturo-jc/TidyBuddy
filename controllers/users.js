@@ -1,10 +1,10 @@
-const { User } = require("../models/user")
-const { ActivityType } = require("../models/activity-type")
-const { Activity } = require("../models/activity")
-const { Comment } = require("../models/comment")
-const { cloudinary } = require("../cloudinary")
-const { Household } = require("../models/household")
-
+const { User } = require("../models/user");
+const { ActivityType } = require("../models/activity-type");
+const { Activity } = require("../models/activity");
+const { Comment } = require("../models/comment");
+const { Household } = require("../models/household");
+const { cloudinary } = require("../cloudinary");
+const ExpressError = require("../utilities/ExpressError");
 
 module.exports.createUser = async (req, res) => {
     const { username, email, password } = req.body;
@@ -73,12 +73,11 @@ module.exports.serveChangePasswordForm = async (req, res) => {
     res.render("users/change-password", {user})
 }
 
-module.exports.changePassword = async (req, res) => {
+module.exports.changePassword = async (req, res, next) => {
     const {userId} = req.params;
     const {currentpw, reenter, newpw} = req.body;
     if (currentpw !== reenter) {
-        req.flash("error", "Passwords do not match, please try again");
-        return res.redirect(`/users/${userId}/change-password`);
+        return next(new ExpressError("Passwords do not match, please try again", 403, "IncorrectPasswordError"))
     }
     const user = await User.findById(userId);
     await user.changePassword(currentpw, newpw);
@@ -103,11 +102,8 @@ module.exports.deleteAccount = async (req, res) => {
         populate: "filename"
     })
 
-    const authentication = await user.authenticate(password)
-    if (authentication.error){
-        req.flash("error", `${authentication.error}`)
-        return res.redirect(`/users/${user._id}/delete-account`)
-    }
+    // Authenticate user
+    await user.authenticate(password)
 
     // Delete user reference from households
     await Household.updateMany({users: user}, {$pull: { users: user._id }})

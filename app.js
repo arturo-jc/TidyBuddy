@@ -14,7 +14,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
 const ExpressError = require("./utilities/ExpressError");
-const {getModel, getReason, returnTo } = require("./utilities/mongooseErrors");
+const errorHandler = require("./errorHandler")
 
 // ROUTES
 const activityTypeRoutes = require("./routes/activity-types");
@@ -106,25 +106,7 @@ app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found", 404))
 })
 
-app.use((err, req, res, next) => {
-    const { statusCode = 500 } = err;
-    const returnUrl = returnTo(req) || "/register"
-    switch (err.name){
-        case "CastError":
-            const model = getModel(err)
-            err.message = `Sorry, no ${model} matches that ID`;
-            return res.status(statusCode).render("error", { err })
-        case "ValidationError":
-            req.flash("error", getReason(err))
-            return res.redirect(returnUrl)
-        case "MissingUsernameError":
-        case "MissingPasswordError":
-            req.flash("error", err.message)
-            return res.redirect(returnUrl)
-    }
-    if (!err.message) err.message = "Something went wrong."
-    res.status(statusCode).render("error", { err })
-})
+app.use(errorHandler)
 
 // LISTEN
 
