@@ -1,6 +1,9 @@
 const { User } = require("../models/user")
-const { Household } = require("../models/household")
+const { ActivityType } = require("../models/activity-type")
+const { Activity } = require("../models/activity")
+const { Comment } = require("../models/comment")
 const { cloudinary } = require("../cloudinary")
+const { Household } = require("../models/household")
 
 
 module.exports.createUser = async (req, res) => {
@@ -17,7 +20,6 @@ module.exports.redirectUponLogin = async (req, res) => {
     const redirectUrl = req.session.returnTo || "/"
     delete req.session.returnTo
     return res.redirect(redirectUrl)
-    res.redirect(redirectUrl);
 }
 
 module.exports.updateProfilePic = async (req, res) => {
@@ -62,5 +64,81 @@ module.exports.takeUserToMain = async (req, res) => {
         }
         return res.redirect("/households/find-or-create")
     }
+    res.redirect("/login")
+}
+
+module.exports.serveChangePasswordForm = async (req, res) => {
+    const {userId} = req.params;
+    const user = await User.findById(userId);
+    res.render("users/change-password", {user})
+}
+
+module.exports.changePassword = async (req, res) => {
+    const {userId} = req.params;
+    const {currentpw, reenter, newpw} = req.body;
+    if (currentpw !== reenter) {
+        req.flash("error", "Passwords do not match, please try again");
+        return res.redirect(`/users/${userId}/change-password`);
+    }
+    const user = await User.findById(userId);
+    await user.changePassword(currentpw, newpw);
+    req.flash("success", "Password successfully changed.")
+    res.redirect(`/users/${userId}/change-password`);
+}
+
+module.exports.serveDeleteForm = async (req, res) =>{
+    const {userId} = req.params;
+    const user = await User.findById(userId);
+    res.render("users/delete-account", {user})
+}
+
+module.exports.deleteAccount = async (req, res) => {
+    const {userId} = req.params;
+    const {password} = req.body;
+
+    // Find user and populate for Cloudinary purposes
+    const user = await User.findById(userId)
+    .populate({
+        path: "profilePic",
+        populate: "filename"
+    })
+
+    const authentication = await user.authenticate(password)
+    if (authentication.error){
+        req.flash("error", `${authentication.error}`)
+        return res.redirect(`/users/${user._id}/delete-account`)
+    }
+
+    // Delete user reference from households
+    await Household.updateMany({users: user}, {$pull: { users: user._id }})
+
+    // Delete all user activities
+    await Activity.deleteMany({user})
+
+    // Delete all user comments and their references from their respective activities
+    const comments = await Comment.find({user})
+    await Activity.updateMany({comments: {$in: comments}}, {$pull: {comments: {$in: comments}}})
+    await Comment.deleteMany({user})
+    
+    // Tell Cloudinary to delete profile pic if user has one
+    if (user.profilePic) {
+        await cloudinary.uploader.destroy(user.profilePic.filename)
+    }
+
+    // Delete all activity types within empty households
+    const emptyHouseholds = await Household.find({users: {$eq: []}});
+    if (emptyHouseholds){
+        for (let household of emptyHouseholds){
+            await ActivityType.deleteMany({_id: {$in: household.activityTypes}})
+        }
+    }
+
+    // Delete all empty households
+    await Household.deleteMany({users: {$eq: []}})
+
+    // Delete user
+    await User.findByIdAndDelete(userId)
+
+    req.flash("success", "Account deleted.")
     res.redirect("/login")
 }

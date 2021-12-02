@@ -26,7 +26,7 @@ module.exports.createActivity = async (req, res) => {
 module.exports.deleteActivity = async (req, res) => {
     const { householdId, activityId } = req.params;
     const activity = await Activity.findByIdAndDelete(activityId);
-    const parentActivityType = await ActivityType.findOneAndUpdate(
+    await ActivityType.findOneAndUpdate(
         { name: activity.name },
         { $pull: { completedBy: activityId } }
     );

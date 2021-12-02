@@ -1,0 +1,11 @@
+<% layout("layouts/boilerplate") %>
+    <main class="changepw-main">
+        <div class="card">
+            <h1>Delete account</h1>
+            <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Password">
+                <button>Delete account</button>
+            </form>
+        </div>
+    </main>

@@ -6,13 +6,13 @@ const { isLoggedIn, isHouseholdMember, isEligibleToJoin } = require("../middlewa
 
 router.get("/find-or-create", isLoggedIn, catchAsync(displaySearchResults))
 
-router.get("/:householdId", isLoggedIn, isHouseholdMember, catchAsync(showHousehold))
+router.get("/:householdId", isLoggedIn, catchAsync(isHouseholdMember), catchAsync(showHousehold))
 
-router.put("/:householdId/send-request", isLoggedIn, isEligibleToJoin, catchAsync(sendRequest))
+router.put("/:householdId/send-request", catchAsync(isEligibleToJoin), catchAsync(sendRequest))
 
-router.put("/:householdId/accept-request", isLoggedIn, isHouseholdMember, catchAsync(acceptRequest))
+router.put("/:householdId/accept-request", catchAsync(isHouseholdMember), catchAsync(acceptRequest))
 
-router.put("/:householdId/decline-request", isLoggedIn, isHouseholdMember, catchAsync(declineRequest))
+router.put("/:householdId/decline-request", catchAsync(isHouseholdMember), catchAsync(declineRequest))
 
 router.post("/", catchAsync(createHousehold))
 

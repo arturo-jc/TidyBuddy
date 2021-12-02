@@ -86,6 +86,7 @@ if (inviteButton) {
 const setProfileButton = document.querySelector(".set-profile")
 const chooseFileInput = document.querySelector(".set-profile-area input")
 const filename = document.querySelector(".filename")
+const uploadButton = document.querySelector(".upload")
 
 if (setProfileButton) {
     setProfileButton.addEventListener("click", () =>{
@@ -93,5 +94,6 @@ if (setProfileButton) {
     })
     chooseFileInput.addEventListener("change", ()=>{
         filename.textContent = chooseFileInput.files[0].name
+        uploadButton.classList.remove("hidden")
     })
 }

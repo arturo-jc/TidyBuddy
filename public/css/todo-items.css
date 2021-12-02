@@ -237,6 +237,7 @@
 /* ALERTS */
 
 .alert {
+    margin: 5px;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -249,8 +250,15 @@
 .alert .message {
     padding: 10px;
     flex-grow: 1;
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
+}
+
+.alert .message .error-more-info {
+    margin: 5px 0;
+    font-size: .7rem;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .alert button {

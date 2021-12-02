@@ -27,13 +27,9 @@ const ActivitySchema = new Schema({
     }
 })
 
-ActivitySchema.post("findOneAndDelete", async function (doc) {
-    if (doc) {
-        await Comment.deleteMany({
-            _id: {
-                $in: doc.comments
-            }
-        })
+ActivitySchema.post("findOneAndDelete", async function (activity) {
+    if (activity) {
+        await Comment.deleteMany({_id: {$in: activity.comments}})
     }
 })
 

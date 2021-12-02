@@ -13,6 +13,11 @@
             <div class="alert alert-error">
                 <div class="message">
                     <%= error %>
+                    <% if (errorMoreInfo && errorMoreInfo.length) { %>
+                        <div class="error-more-info">
+                            <%= errorMoreInfo %> 
+                        </div>
+                    <% } %>
                 </div>
                 <div class="button-container">
                     <button class="close"><i class="fas fa-times"></i></button>

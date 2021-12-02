@@ -5,6 +5,6 @@ const { isHouseholdMember, ownsComment } = require("../middleware");
 
 const router = express.Router({ mergeParams: true });
 
-router.post("/", isHouseholdMember, catchAsync(createComment))
-router.delete("/:commentId", ownsComment, catchAsync(deleteComment))
+router.post("/", catchAsync(isHouseholdMember), catchAsync(createComment))
+router.delete("/:commentId", catchAsync(ownsComment), catchAsync(deleteComment))
 module.exports = router;

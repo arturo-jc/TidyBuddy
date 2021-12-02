@@ -172,11 +172,6 @@ main .card {
     border-radius: 10px 0 0 10px;
 } 
 
-/* ALERTS */
-.alert {
-    margin: 5px;
-}
-
 /* HOUSEHOLD CONTAINER */
 
 .household-container {
@@ -375,6 +370,41 @@ margin-bottom: 5px;
     padding: 12px;
     border-radius: 10px;
     margin: 30px 0;
+}
+
+/* CHANGE PASSWORD FORMS */
+
+.changepw-main form label {
+    display: none;
+}
+
+.changepw-main form {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin: auto;
+}
+
+.changepw-main form > * {
+    margin: 10px 0;
+}
+
+.changepw-main form input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9rem;
+    font-weight: 500;
+    padding: 10px;
+    border-width: 0;
+    border-radius: 10px;
+}
+
+.changepw-main form button {
+    border-width: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 10px;
 }
 
 /* MEDIA QUERIES */

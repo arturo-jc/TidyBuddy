@@ -328,11 +328,8 @@ background-color: #6e8494;
     background-color: white;
 }
 
-.upload{
-    color: white;
-}
-
 .upload {
+    color: white;
     background-color: #876E7D;
 }
 .upload:hover {
@@ -341,6 +338,17 @@ background-color: #6e8494;
 
 .user-main .card a{
     color: #039590
+}
+
+/* CHANGE PASSWORD */
+
+.changepw-main form button {
+    color: white;
+    background-color: #876E7D;
+}
+
+.changepw-main form button:hover {
+    background-color: #745d6a;
 }
 
 @media (max-width: 978px) {
