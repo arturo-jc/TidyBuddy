@@ -340,6 +340,7 @@ background-color: #6e8494;
 }
 
 .thumbnail.blank{
+    color: #9BAEBC;
     background-color: #e0e4e6;
 }
 
@@ -379,6 +380,16 @@ background-color: #6e8494;
 
 .changepw-main form button:hover {
     background-color: #745d6a;
+}
+
+/* FOOTER */
+
+footer {
+    color: #677987;
+}
+
+footer a{
+    color: #039590;
 }
 
 @media (max-width: 978px) {

@@ -3,8 +3,11 @@
     <body>
         <%- include("../partials/top-navbar") %>
             <%- include("../partials/flash") %>
+            <div class="content">
                 <%- body %>
-                    <script src="/js/index.js"></script>
+            </div>
+            <%- include("../partials/footer") %>
+            <script src="/js/index.js"></script>
     </body>
 
     </html>

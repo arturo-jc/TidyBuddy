@@ -9,8 +9,8 @@ module.exports.getReason = validationErr => {
 }
 
 module.exports.returnTo = req => {
-    if (req.method === "POST"){
-        const urlArr = req.originalUrl.split("/")
+    const urlArr = req.originalUrl.split("/")
+    if ( req.method === "POST" ){
         const resource = urlArr[urlArr.length - 1]
         switch (resource){
             case "households":
@@ -19,6 +19,10 @@ module.exports.returnTo = req => {
             case "comments":
                 return urlArr.slice(0,3).join("/")
         }
+    }
+    if ( req.method === "DELETE" && urlArr[1] === "users" ){
+        const userId = urlArr[2].split("?")[0]
+        return `/users${urlArr[0]}/${userId}/delete-account`
     } 
     return req.originalUrl
 }

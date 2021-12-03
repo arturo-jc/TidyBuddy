@@ -1,15 +1,9 @@
 <% layout("layouts/dashboard-boilerplate") %>
-    <div class="container">
-        <%- include("../partials/sidebar") %>
-            <div class="dashboard-main">
-                <%- include("../partials/flash") %>
-                    <div class="row">
-                        <div class="column">
-                            <div class="card feed">
-                                <h3>All activities</h3>
-                                <%- include("../partials/feed") %>
-                            </div>
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="column">
+            <div class="card feed">
+                <h3>All activities</h3>
+                <%- include("../partials/feed") %>
             </div>
+        </div>
     </div>

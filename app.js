@@ -15,6 +15,7 @@ const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
 const ExpressError = require("./utilities/ExpressError");
 const errorHandler = require("./errorHandler")
+const { User } = require("./models/user");
 
 // ROUTES
 const activityTypeRoutes = require("./routes/activity-types");
@@ -22,10 +23,6 @@ const activityRoutes = require("./routes/activities");
 const commentRoutes = require("./routes/comments");
 const userRoutes = require("./routes/users")
 const householdRoutes = require("./routes/households")
-
-// MODELS
-const { User } = require("./models/user");
-const { Household } = require("./models/household");
 
 // DB CONNECTION
 
@@ -76,7 +73,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(flash());
 
-// GLOBAL MIDDLEWARE
+// LOCALS
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -87,12 +84,6 @@ app.use((req, res, next) => {
 })
 
 // ROUTING
-
-app.get("/index", async (req, res) => {
-    const households = await Household.find({}).populate("users")
-    const users = await User.find({})
-    res.render("index", { users, households });
-})
 
 app.use("/", userRoutes);
 app.use("/households", householdRoutes);

@@ -2,8 +2,17 @@
 
     <body>
         <%- include("../partials/top-navbar") %>
-            <%- body %>
-                <script src="/js/index.js"></script>
+        <div class="container">
+            <%- include("../partials/sidebar") %>
+            <div class="dashboard-main">
+                <div class="content">
+                    <%- include("../partials/flash") %>
+                    <%- body %>
+                </div>
+            <%- include("../partials/footer") %>
+            </div>
+        </div>
+        <script src="/js/index.js"></script>
     </body>
 
     </html>

@@ -91,7 +91,7 @@ module.exports.serveDeleteForm = async (req, res) =>{
     res.render("users/delete-account", {user})
 }
 
-module.exports.deleteAccount = async (req, res) => {
+module.exports.deleteAccount = async (req, res, next) => {
     const {userId} = req.params;
     const {password} = req.body;
 
@@ -103,7 +103,10 @@ module.exports.deleteAccount = async (req, res) => {
     })
 
     // Authenticate user
-    await user.authenticate(password)
+    const authentication = await user.authenticate(password)
+    if (authentication.error){
+        return next(authentication.error)
+    }
 
     // Delete user reference from households
     await Household.updateMany({users: user}, {$pull: { users: user._id }})
