@@ -28,6 +28,7 @@ module.exports.showHousehold = async (req, res) => {
 
     const household = await Household.findById(householdId)
         .populate({ path: "pendingRequests", select: "username" })
+        .populate({ path: "declinedRequests", select: "username" })
         .populate({ path: "users", select: "username profilePic" })
         .populate({
             path: "activityTypes",
@@ -108,6 +109,21 @@ module.exports.declineRequest = async (req, res) => {
     req.flash("success", "Request declined")
     res.redirect(`/households/${household._id}`)
 }
+
+module.exports.acceptDeclined = async (req, res) => {
+    const { householdId } = req.params;
+    const { userId } = req.body;
+    const household = await Household.findByIdAndUpdate(
+        householdId,
+        {
+            $pull: { declinedRequests: userId },
+            $addToSet: { users: userId }
+        }
+    )
+    req.flash("success", "Request accepted.")
+    res.redirect(`/households/${household._id}`)
+}
+
 
 module.exports.createHousehold = async (req, res) => {
     const newHousehold = new Household({

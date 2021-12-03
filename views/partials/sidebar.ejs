@@ -44,4 +44,23 @@
                     </div>
                     <% } %>
                         <% } %>
+
+    <% if (household.declinedRequests.length) { %>
+    <div class="declined-requests-area">
+        <button class="declined-requests-button">
+            Declined requests
+        </button>
+        <div class="declined-requests hidden">
+            <% for (let user of household.declinedRequests) { %>
+                <div class="request">
+                    <%= user.username %>
+                            <form action="/households/<%=household._id%>/accept-declined?_method=PUT" method="POST">
+                                <input type="hidden" name="userId" value="<%=user._id%>">
+                                <button class="accept-declined"><i class="fas fa-pray"></i> Accept</button>
+                            </form>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
 </div>

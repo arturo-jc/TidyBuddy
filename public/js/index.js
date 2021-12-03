@@ -97,3 +97,14 @@ if (setProfileButton) {
         uploadButton.classList.remove("hidden")
     })
 }
+
+// DECLINED REQUESTS BEHAVIOR
+
+const declinedRequestsBtn = document.querySelector(".declined-requests-button")
+const declinedRequests = document.querySelector(".declined-requests")
+
+if (declinedRequestsBtn){
+    declinedRequestsBtn.addEventListener("click", ()=>{
+        declinedRequests.classList.toggle("hidden")
+    })
+}

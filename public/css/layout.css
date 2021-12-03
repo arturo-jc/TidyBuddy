@@ -310,6 +310,26 @@ margin-bottom: 5px;
     font-style: italic;
 }
 
+.declined-requests-button {
+    margin: 30px 0;
+    border-width: 0;
+    font-size: .8rem;
+    font-weight: 400;
+    padding: 6px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.accept-declined {
+    margin: 10px;
+    border-width: 0;
+    font-size: .9rem;
+    font-weight: 400;
+    padding: 6px 12px;
+    border-radius: 10px;
+    cursor: pointer; 
+}
+
 /* USER PROFILES */
 
 .thumbnail {

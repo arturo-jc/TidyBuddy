@@ -306,6 +306,16 @@ background-color: #6e8494;
 
 .sidebar .decline-request:hover{
     color: #2F4858;
+    background-color: #6e8494;
+}
+
+.sidebar .declined-requests-button, .accept-declined {
+    color: #6e8494;
+    background-color: #e0e4e6;
+}
+
+.sidebar .declined-requests-button:hover, .accept-declined:hover {
+    color: white;
     background-color: #9BAEBC;
 }
 
