@@ -1,5 +1,6 @@
 const { Household } = require("../models/household");
 const { Activity } = require("../models/activity");
+const getFirstDayOfWeek = require("../utilities/getFirstDayOfWeek")
 
 module.exports.displaySearchResults = async (req, res) => {
     let requestSent = false
@@ -26,7 +27,8 @@ module.exports.displaySearchResults = async (req, res) => {
 module.exports.showHousehold = async (req, res) => {
     const { householdId } = req.params;
 
-    const household = await Household.findById(householdId)
+    const household = await Household
+        .findById(householdId)
         .populate({ path: "pendingRequests", select: "username" })
         .populate({ path: "declinedRequests", select: "username" })
         .populate({ path: "users", select: "username profilePic" })
@@ -46,9 +48,21 @@ module.exports.showHousehold = async (req, res) => {
         .filter(item => item.priority > 0)
         .sort((a, b) => (a.priority < b.priority) ? 1 : -1);
 
-    const frequentItems = household.activityTypes.filter(item => item.priority < 1)
+    const frequentItems = household.activityTypes
+        .filter(item => item.priority < 1 )
+        .sort((a, b) => (a.pinned === b.pinned) ? 0 : a.pinned? -1: 1)
 
-    const activities = await Activity.find({ household })
+    frequentItems.pinned = frequentItems
+        .filter(item => item.pinned)
+
+    frequentItems.unpinned = frequentItems
+        .filter(item => !item.pinned)
+ 
+    const activities = await Activity
+        .find({
+            household,
+            date: { $gte: getFirstDayOfWeek() }
+        })
         .populate({
             path: "user",
             select: "username"

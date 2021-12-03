@@ -35,6 +35,14 @@ module.exports.togglePriority = async (req, res) => {
     res.redirect(`/households/${householdId}`);
 }
 
+module.exports.togglePinned = async (req, res) => {
+    const { householdId, typeId } = req.params;
+    const activityType = await ActivityType.findById(typeId);
+    activityType.pinned = !activityType.pinned;
+    await activityType.save()
+    res.redirect(`/households/${householdId}`);
+}
+
 module.exports.deleteActivityType = async (req, res) => {
     const { householdId, typeId } = req.params;
     await Household.findByIdAndUpdate(

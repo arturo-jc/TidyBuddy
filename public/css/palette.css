@@ -82,18 +82,38 @@ background-color: #f4f6f6;
     background-color: #6e8494;
 }
 
+.frequent button.show-all {
+    color: white;
+    background-color: #66afad;
+}
+
+.frequent button.show-all:hover {
+    color: white;
+    background-color: #039590;
+}
+
 /* ADD ACTIVITY FORM */
 
 .frequent .add-form button {
-    color: #4f606d
+    color: white;
+    background-color: #66afad;
 }
 
 .frequent .add-form button:hover {
     color: white;
+    background-color: #039590;
 }
 
 
 /* FEED CARD */
+
+.activities-more-info{
+    color: #677987;
+}
+
+.activities-more-info a {
+    color: #039590;
+}
 
 .feed-item .feed-item-body {
     color: #677987;

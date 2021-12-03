@@ -270,11 +270,6 @@ margin-bottom: 5px;
     justify-content: center;
 }
 
-/* .sidebar-user a {
-    max-width: 50px;
-} */
-
-
 /* PENDING REQUESTS */
 
 .pending-requests {
@@ -425,6 +420,14 @@ margin-bottom: 5px;
     font-weight: 500;
     padding: 12px;
     border-radius: 10px;
+}
+
+/* FEED */
+
+.activities-more-info{
+    font-size: .85rem;
+    font-weight: 400;
+    margin: 0 0 18.720px;
 }
 
 /* MEDIA QUERIES */

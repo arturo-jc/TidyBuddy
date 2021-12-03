@@ -1,0 +1,38 @@
+<% for( let item of items ) { %>
+    <div class="todo-item">
+        <form class="mark-complete-form" action="/households/<%=household._id%>/activities" method="POST">
+            <input type="hidden" name="typeId" value="<%= item._id %>">
+            <button>
+                <div class="checkmark">
+                    <i class="fas fa-check fa-lg icon-inactive"></i>
+                </div>
+                <div class="item-body">
+                    <div class="item-name">
+                        <%= item.name %>
+                    </div>
+                    <% if (item.completedBy.length ) { %>
+                        <div class="last-completed-date">
+                            Last completed by <%= item.completedBy[item.completedBy.length - 1].user.username %>
+                                on <%= item.completedBy[item.completedBy.length - 1].date.toDateString() %>
+                        </div>
+                        <% } %>
+                </div>
+            </button>
+        </form>
+        <div class="button-group">
+            <form action="/households/<%=household._id%>/activitytypes/<%=item._id %>/mark-to-do?_method=PUT"
+                method="POST">
+                <button><i class="fas fa-flag fa-lg icon-inactive"></i></button>
+            </form>
+            <form action="/households/<%=household._id%>/activitytypes/<%=item._id %>/toggle-pinned?_method=PUT"
+                method="POST">
+                <button>
+                    <i class="fas fa-thumbtack fa-lg <%= item.pinned? "" : "icon-inactive" %>"></i>
+                </button>
+            </form>
+            <form action="/households/<%=household._id%>/activitytypes/<%=item._id %>?_method=DELETE" method="POST">
+                <button class="button-end"><i class="fas fa-trash fa-lg icon-inactive"></i></button>
+            </form>
+        </div>
+    </div>
+<% } %>

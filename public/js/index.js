@@ -108,3 +108,19 @@ if (declinedRequestsBtn){
         declinedRequests.classList.toggle("hidden")
     })
 }
+
+// SHOW ALL ACTIVITY TYPES BEHAVIOR
+
+const showAllButton = document.querySelector(".show-all")
+const unpinnedItems = document.querySelector(".unpinned-items-hide-show-area")
+
+if (showAllButton){
+    showAllButton.addEventListener("click", ()=>{
+        unpinnedItems.classList.toggle("hidden");
+        if (showAllButton.textContent === "Show all"){
+            showAllButton.textContent = "Show fewer"
+        } else{
+            showAllButton.textContent = "Show all"
+        }
+    })
+}

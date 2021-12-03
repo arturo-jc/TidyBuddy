@@ -2,11 +2,41 @@ const { Household } = require("../models/household")
 const { ActivityType } = require("../models/activity-type");
 const { Activity } = require("../models/activity");
 
+module.exports.showActivities = async (req, res) => {
+    const { householdId } = req.params;
+
+    const household = await Household
+    .findById(householdId)
+    .populate({ path: "pendingRequests", select: "username" })
+    .populate({ path: "declinedRequests", select: "username" })
+    .populate({ path: "users", select: "username profilePic" })
+
+    const activities = await Activity
+    .find({ household })
+    .populate({
+        path: "user",
+        select: "username"
+    })
+    .populate({
+        path: "comments",
+        populate: {
+            path: "user",
+            select: "username",
+            populate: {
+                path: "profilePic"
+            }
+        }
+    })
+    .sort('-date')
+
+    res.render("activities/show", {
+        household,
+        activities})
+}
+
 module.exports.createActivity = async (req, res) => {
     const { householdId } = req.params;
     const { typeId } = req.body;
-    // const household = await Household.findById(householdId);
-    // Check if it's actually necessary to find the household object, maybe I can just store the ID
     const activityType = await ActivityType.findByIdAndUpdate(typeId, { priority: 0 });
     const newActivity = new Activity({
         name: activityType.name,

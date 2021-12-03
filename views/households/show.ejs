@@ -1,4 +1,5 @@
 <% layout("layouts/dashboard-boilerplate") %>
+<%- include("../functions/date-functions") %> 
     <div class="container">
         <%- include("../partials/sidebar") %>
             <div class="dashboard-main">
@@ -13,7 +14,11 @@
                     </div>
                     <div class="row">
                         <div class="column">
-                            <%- include("../partials/feed") %>
+                            <div class="card feed">
+                                <h3>Completed activities</h3>
+                                <p class="activities-more-info">starting <%= getFirstDayOfWeek().toLocaleDateString() %> | <a href="/households/<%=household._id%>/activities/">see all activities</a></p>
+                                <%- include("../partials/feed") %>
+                            </div>
                         </div>
                     </div>
             </div>
