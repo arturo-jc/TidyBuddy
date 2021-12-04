@@ -15,10 +15,12 @@
             <% if (user.equals(currentUser._id)) { %>
                 <h2>Set profile picture</h2>
                 <div class="set-profile-area">
-                    <div class="choose-file-area">
-                        <button class="set-profile"><i class="fas fa-hand-point-up"></i> Choose file</button>
-                        <div class="filename">No file selected</div>
-                    </div>
+                        <form class="choose-file-form" action="#">
+                            <button class="set-profile"><i class="fas fa-hand-point-up"></i> Choose file</button>
+                            <div class="filename-container">
+                                <div class="filename">No file selected</div>
+                            </div>
+                        </form>
                     <form action="/users/<%=user._id%>/profile-pic?_method=PUT" method="POST" enctype="multipart/form-data">
                         <input type="file" name="profile-pic" id="profile-pic">
                         <button class="upload hidden"><i class="fas fa-arrow-circle-up"></i> Upload</button>

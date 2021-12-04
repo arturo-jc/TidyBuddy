@@ -69,11 +69,6 @@ main .card {
     cursor: pointer;
 }
 
-.comment-row {
-    display: flex;
-    flex-wrap: wrap-reverse;
-}
-
 main {
     display: flex;
     justify-content: center;
@@ -104,17 +99,17 @@ main .card {
     font-weight: 500;
     padding: 10px 0 13px;
     text-align: center;
-    border-width: 0 0 1px 0;
-    border-color: rgba(190, 190, 190, 0.8)
+    border-width: 2px 2px 0 2px;
+    border-style: solid;
 }
 
 .auth-main form input:nth-of-type(1) {
     border-radius: 10px 10px 0 0;
 }
 
-.auth-main form input:last-of-type {
-    border-width: 0;
-}
+/* .auth-main form input:last-of-type {
+    border-top: 0;
+} */
 
 .auth-main form button {
     border-width: 0;
@@ -155,11 +150,12 @@ main .card {
 }
 
 .household-main form input {
+    border-style: solid;
+    border-width: 2px 2px 2px 0;
     font-family: 'Montserrat', sans-serif;
     font-size: .9rem;
     font-weight: 500;
     padding: 10px 0 13px;
-    border-width: 0;
     border-radius: 0 10px 10px 0;
     flex-grow: 1;
     text-align: center;
@@ -174,12 +170,18 @@ main .card {
     border-radius: 10px 0 0 10px;
 } 
 
+#existing{
+    border-style: solid;
+    border-width: 2px;
+}
+
 /* HOUSEHOLD CONTAINER */
 
 .household-container {
     display: flex;
     border-radius: 10px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    margin: 15px 0;
 }
 
 .household-container .household-info {
@@ -219,6 +221,8 @@ margin-bottom: 5px;
 
 .sidebar h3 {
     margin: 10px 0;
+    max-width: 212px;
+    overflow-wrap: break-word;
 }
 
 .sidebar h3.pending-requests-heading{
@@ -261,7 +265,7 @@ margin-bottom: 5px;
 }
 
 .sidebar-user {
-    padding: 10px 20px;
+    padding: 10px 35px;
     display: flex;
     align-items: center;
 }
@@ -271,6 +275,11 @@ margin-bottom: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.sidebar .username a {
+    max-width: 100px;
+    overflow-wrap: break-word;
 }
 
 /* PENDING REQUESTS */
@@ -293,12 +302,20 @@ margin-bottom: 5px;
     text-align: center;
 }
 
+.request p {
+    margin: auto;
+    max-width: 100px;
+    overflow-wrap: break-word;
+}
+
 /* SIDEBAR */
 
 .household-ID {
     display: inline-block;
     padding: 5px;
     border-radius: 10px;
+    max-width: 150px;
+    overflow-wrap: break-word;
 }
 
 .household-ID p {
@@ -348,26 +365,29 @@ margin-bottom: 5px;
     height: 200px;
 }
 
-.choose-file-area{
+.choose-file-form {
     display: flex;
-    align-items: center;
-    border-radius: 10px;
-    margin: 20px 0;
+    align-items: stretch;
 }
 
 .set-profile{
-    border-width: 0;
+    border-width: 0px;
     font-size: 1rem;
     font-weight: 500;
-    padding: 6px 12px;
+    padding: 12px;
     border-radius: 10px 0 0 10px;
 }
 
-.filename{
+.filename-container{
     padding: 0 20px;
     font-size: .9rem;
     font-weight: 400;
     font-style: italic;
+    border-style: solid;
+    border-width: 2px 2px 2px 0;
+    display: flex;
+    align-items: center;
+    border-radius: 0 10px 10px 0;
 }
 
 .user-main input[type=file]{
@@ -387,7 +407,7 @@ margin-bottom: 5px;
     font-weight: 500;
     padding: 12px;
     border-radius: 10px;
-    margin: 30px 0;
+    margin: 30px 0 15px;
 }
 
 /* CHANGE PASSWORD FORMS */
@@ -412,7 +432,8 @@ margin-bottom: 5px;
     font-size: .9rem;
     font-weight: 500;
     padding: 10px;
-    border-width: 0;
+    border-style: solid;
+    border-width: 2px;
     border-radius: 10px;
 }
 
@@ -489,7 +510,7 @@ footer {
 
     .sidebar.active {
         left: 0;
-        overflow: scroll;
+        overflow: auto;
     }
 
     .dashboard-main {
@@ -499,5 +520,15 @@ footer {
 
     main .card {
         margin-top: 12px;   
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        margin: 0 0 12px;
+        border-radius: 0;
+    }
+    main .card {
+        margin-top: 0;
     }
 }

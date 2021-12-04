@@ -18,12 +18,16 @@
 /* BOILERPLATE */
 
 body {
-    color: #2F4858;
-    background-color: #e0e4e6;
+    /* color: #848082; */
+    color: #556c79;
+    /* background-color: #e0e4e6; */
+    /* background-color: #f4f6f6; */
+    background-color: #eef2f7;
 }
 
 .card {
-background-color: #f4f6f6;
+/* background-color: #f4f6f6; */
+background-color: white;
 }
 
 /* PRIORITY CARD */
@@ -83,19 +87,22 @@ background-color: #f4f6f6;
 }
 
 .frequent button.show-all {
-    color: white;
-    background-color: #66afad;
+    color: #66afad;
+    background-color: white;
+    border-color: #66afad;
 }
 
 .frequent button.show-all:hover {
     color: white;
-    background-color: #039590;
+    background-color: #66afad;
+    /* color: white;
+    background-color: #039590; */
 }
 
 /* ADD ACTIVITY FORM */
 
 .frequent .add-form button {
-    color: white;
+    color: #026461;
     background-color: #66afad;
 }
 
@@ -104,6 +111,14 @@ background-color: #f4f6f6;
     background-color: #039590;
 }
 
+.frequent .add-form input {
+    border-color: #66afad;
+    color: #66afad;
+}
+
+.frequent .add-form input::placeholder {
+    color: #66afad;
+}
 
 /* FEED CARD */
 
@@ -116,7 +131,8 @@ background-color: #f4f6f6;
 }
 
 .feed-item .feed-item-body {
-    color: #677987;
+    /* color: #677987; */
+    color: #556c79;
     background-color: #e0e4e6
 }
 
@@ -125,7 +141,8 @@ background-color: #f4f6f6;
 }
 
 .feed-item button {
-    color: #677987;
+    /* color: #677987; */
+    color: #556c79;
 }
 
 .feed-item button.inactive {
@@ -183,73 +200,111 @@ background-color: #f4f6f6;
     background-color: #6e8494;
 }
 
+.add-comment-form textarea {
+    border-color: #9BAEBC;
+}
+
+.add-comment-form textarea::placeholder {
+    color: #556c79;
+}
+
 /* AUTH FORMS */
 
 .auth-main form button {
     color: white;
-    background-color: #9BAEBC;
+    background-color: #556c79;
 }
 
-.auth-main form button:hover {
-background-color: #6e8494;
+.auth-main form input {
+    color: #556c79;
+    border-color: #556c79;
 }
 
-/* HOUSEHOLD FORM */
+.auth-main form input::placeholder {
+    color: #556c79;
+}
 
+/* CHANGE PASSWORD FORM */
 
-.household-main .card .options button {
+.changepw-main form input {
+    border-color: #556c79;
+    color: #556c79;
+}
+.changepw-main form input::placeholder {
+    color: #556c79;
+}
+
+.household-main form button:hover {
     color: white;
+}
+
+.household-main form button {
+    color: #026461;
+    background-color: #66afad;
+}
+
+.household-main form button:hover {
+    color: white;
+    background-color: #039590;
+}
+
+.household-main form input {
+    color: #66afad;
+    border-color: #66afad;
+}
+
+
+.household-main form input::placeholder {
+    color: #66afad;
 }
 
 #existing {
-    background-color: #9BAEBC;
+    color: #6e8494;
+    background-color: white;
+    border-color: #6e8494;
 }
 
 #existing:hover {
-    background-color: #6e8494;
+    color: white;
+    background-color: #9BAEBC;
+    border-color: #9BAEBC;
 }
 #new {
-    background-color: #876E7D;
-}
-#new:hover {
-    background-color: #745d6a;
-}
-
-.household-main button {
-    color: white;
-}
-
-.household-main #search-household-form button {
+    color: #2F4858;;
     background-color: #9BAEBC;
 }
-.household-main #search-household-form button:hover {
+#new:hover {
+    color: white;
     background-color: #6e8494;
 }
 
-.household-main #new-household-form button {
-    background-color: #876E7D;
-}
-
-.household-main #new-household-form button:hover {
-    background-color: #745d6a;
-}
 
 /* HOUSEHOLD CONTAINER */
 
 .household-container {
-    background-color: #9BAEBC;
+    background-color: #876E7D;
+    color: #463840;
 }
 
-.household-container button {
-    color: #2F4858;
-    background-color: #9BAEBC;
+.household-main .household-container button {
+    background-color: #876E7D;
+    color: #463840;
 }
 
-.household-container button:hover {
+.household-main .household-container button:hover {
     color: white;
-    background-color: #6e8494;
+    background-color: #745d6a;
 }
 
+
+/* .changepw-main form button {
+    color: white;
+    background-color: #876E7D;
+}
+
+.changepw-main form button:hover {
+    background-color: #745d6a;
+} */
 
 .household-container.disabled {
     color: #6e8494;
@@ -289,7 +344,8 @@ background-color: #6e8494;
 /* SIDEBAR */
 
 .sidebar {
-    background-color: #f4f6f6;
+    /* background-color: #f4f6f6; */
+    background-color: white;
 }
 
 .sidebar .invite {
@@ -298,6 +354,7 @@ background-color: #6e8494;
 }
 
 .sidebar .invite:hover {
+    color: white;
     background-color:#6e8494;
 }
 
@@ -346,25 +403,27 @@ background-color: #6e8494;
 
 /* USER PROFILE */
 
+.filename-container{
+    border-color: #9BAEBC;
+}
+
 .set-profile {
     color: #2F4858;
     background-color: #9BAEBC;
 }
 
 .set-profile:hover {
+    color: white;
     background-color:#6e8494;
 }
 
-.choose-file-area{
-    background-color: white;
-}
-
 .upload {
-    color: white;
-    background-color: #876E7D;
+    color: #026461;
+    background-color: #66afad;
 }
 .upload:hover {
-    background-color: #745d6a;
+    color: white;
+    background-color: #039590;
 }
 
 .user-main .card a{

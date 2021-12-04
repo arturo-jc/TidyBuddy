@@ -64,7 +64,8 @@
 
 .show-all {
     margin: 10px 0;
-    border-width: 0;
+    border-style: solid;
+    border-width: 2px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -85,7 +86,8 @@
 
 .frequent .add-form input {
     flex-grow: 1;
-    border-width: 0;
+    border-style: solid;
+    border-width: 2px 2px 2px 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.15rem;
     font-weight: 500;
@@ -175,32 +177,32 @@
 /* COMMENTS */
 
 .comment-area {
+    margin: auto;
     font-size: .9rem;
     font-weight: 400;
-    width: 100%;
+    max-width: 60%;
 }
 
 .comment {
     margin: 5px 0px 5px 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-.comment-text {
+.comment-body {
     padding-left: 10px;
     line-height: 1.5rem;
 }
 
-.comment-text p {
+.comment-body p {
     margin: 10px 0;
 }
 
-.comment .comment-body {
+.comment .comment-main {
     display: flex;
 }
 
-.comment .comment-body .comment-text .comment-details {
+.comment .comment-main .comment-body .comment-details {
     font-size: .8rem;
     font-weight: 400;
     font-style: italic;
@@ -222,9 +224,6 @@
 .add-comment-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    flex-grow: 1;
-    align-items: stretch;
 }
 
 .add-comment-form label {
@@ -232,13 +231,13 @@
 }
 
 .add-comment-form textarea {
-    border-width: 0;
+    border-width: 2px 2px 0 2px;
+    border-style: solid;
     resize: none;
     border-radius: 8px 8px 0 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     padding: 15px;
-    flex-grow: 1;
 }
 
 .add-comment-form button {
@@ -266,8 +265,6 @@
 .alert .message {
     padding: 10px;
     flex-grow: 1;
-    /* display: flex;
-    align-items: center; */
 }
 
 .alert .message .error-more-info {
@@ -284,4 +281,11 @@
 
 .alert button:hover{
     cursor: pointer;
+}
+
+
+@media (max-width: 978px) {
+    .comment-area {
+        max-width: 100%;
+    }
 }
