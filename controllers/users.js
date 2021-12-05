@@ -59,17 +59,6 @@ module.exports.showUserProfile = async (req, res) => {
     res.render("users/show", { user })
 }
 
-// module.exports.takeUserToMain = async (req, res) => {
-//     if (req.user) {
-//         const household = await Household.findOne({ users: req.user })
-//         if (household) {
-//             return res.redirect(`/households/${household._id}`)
-//         }
-//         return res.redirect("/households/find-or-create")
-//     }
-//     res.redirect("/")
-// }
-
 module.exports.findHousehold = async (req, res) => {
     const household = await Household.findOne({ users: req.user })
     if (household) {

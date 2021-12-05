@@ -16,7 +16,6 @@ module.exports.addActivityType = async (req, res) => {
 }
 
 module.exports.toggleTodo = async (req, res) => {
-    console.log("Hit controller")
     const { householdId, typeId } = req.params;
     const activityType = await ActivityType.findById(typeId);
     if(activityType.priority > 0){
