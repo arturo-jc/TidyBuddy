@@ -2,29 +2,13 @@
     <h3>Frequent activities</h3>
     <%- include("./items", {items: frequentItems.pinned})%>
 
-    <%
-    const itemsShownMax = 5
-
-    let numberOfUnpinnedItemsShown = 0;
-    let unpinnedItemsShown = [];
-    let unpinnedItemsHidden = [];
-
-    if ( frequentItems.pinned.length < itemsShownMax ){
-        numberOfUnpinnedItemsShown = itemsShownMax - frequentItems.pinned.length
-        unpinnedItemsShown = frequentItems.unpinned.slice(0, numberOfUnpinnedItemsShown)
-        unpinnedItemsHidden = frequentItems.unpinned.slice(numberOfUnpinnedItemsShown)
-    } else {
-        unpinnedItemsHidden = frequentItems.unpinned
-    }
-    %> 
-
-    <% if ( unpinnedItemsShown.length ) { %>
-        <%- include("./items", {items: unpinnedItemsShown})%>
+    <% if ( frequentItems.unpinned.shown.length ) { %>
+        <%- include("./items", {items: frequentItems.unpinned.shown})%>
     <% } %>
     
-    <% if ( unpinnedItemsHidden.length ) { %>
+    <% if ( frequentItems.unpinned.hidden.length ) { %>
         <div class="unpinned-items-hide-show-area hidden">
-            <%- include("./items", {items: unpinnedItemsHidden})%>
+            <%- include("./items", {items: frequentItems.unpinned.hidden})%>
         </div>
         <button class="show-all">Show all</button>
     <% } %>

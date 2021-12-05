@@ -47,13 +47,31 @@ module.exports.showHousehold = async (req, res) => {
 
     const frequentItems = household.activityTypes
         .filter(item => item.priority < 1 )
-        .sort((a, b) => (a.pinned === b.pinned) ? 0 : a.pinned? -1: 1)
 
     frequentItems.pinned = frequentItems
         .filter(item => item.pinned)
 
     frequentItems.unpinned = frequentItems
         .filter(item => !item.pinned)
+
+    /*SHOW ALL BUTTON FUNCTIONALITY
+    If there are no more than 5 pinned items,
+    show as many unpinned items as you can
+    as long as the number of items shown does not exceed 5
+    If there are more than 5 pinned items,
+    do not show any unpinned items
+    */
+
+    const shownMax = 5;
+    const NumberOfUnpinnedShown = shownMax - frequentItems.pinned.length;
+    
+    if (frequentItems.pinned.length < shownMax){
+        frequentItems.unpinned.shown = frequentItems.unpinned.slice(0, NumberOfUnpinnedShown)
+        frequentItems.unpinned.hidden = frequentItems.unpinned.slice(NumberOfUnpinnedShown)
+    } else {
+        frequentItems.unpinned.shown = []
+        frequentItems.unpinned.hidden = frequentItems.unpinned
+    }
 
     const activities = await Activity
         .find({
