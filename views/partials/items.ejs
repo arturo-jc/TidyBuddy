@@ -1,5 +1,5 @@
 <% for( let item of items ) { %>
-    <div class="todo-item">
+    <div id="<%= item._id %>" class="todo-item">
         <form class="mark-complete-form" action="/households/<%=household._id%>/activities" method="POST">
             <input type="hidden" name="typeId" value="<%= item._id %>">
             <button>

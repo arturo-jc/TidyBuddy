@@ -73,6 +73,20 @@ module.exports.showHousehold = async (req, res) => {
         frequentItems.unpinned.hidden = frequentItems.unpinned
     }
 
+    /* When a new activity type is created,
+    app redirects user to "/household/:householdId"
+    and passes the new activity type's ID as a query string.
+    If new activity type is hidden by default,
+    show hidden activity types so user can see it*/
+
+    let showAll = false;
+    const { activityTypeId } = req.query;
+    const hiddenItemsIdList = frequentItems.unpinned.hidden
+    .map(item => item._id.toString())
+    if (hiddenItemsIdList.includes(activityTypeId)){
+        showAll = true;
+    }
+
     const activities = await Activity
         .find({
             household,
@@ -99,7 +113,8 @@ module.exports.showHousehold = async (req, res) => {
         priorityItems,
         frequentItems,
         activities,
-        activityId
+        activityId,
+        showAll
     })
 }
 

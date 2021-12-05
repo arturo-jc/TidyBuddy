@@ -12,7 +12,7 @@ module.exports.addActivityType = async (req, res) => {
     household.activityTypes.push(newActivityType);
     await household.save();
     await newActivityType.save();
-    res.redirect(`/households/${householdId}`);
+    res.redirect(`/households/${householdId}?activityTypeId=${newActivityType._id}#${newActivityType._id}`);
 }
 
 module.exports.toggleTodo = async (req, res) => {

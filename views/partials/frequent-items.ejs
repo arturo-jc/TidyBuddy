@@ -7,10 +7,10 @@
     <% } %>
     
     <% if ( frequentItems.unpinned.hidden.length ) { %>
-        <div class="unpinned-items-hide-show-area hidden">
+        <div class="unpinned-items-hide-show-area <%= showAll? '' : 'hidden' %>"> 
             <%- include("./items", {items: frequentItems.unpinned.hidden})%>
         </div>
-        <button class="show-all">Show all</button>
+        <button class="show-all"><%= showAll? 'Show fewer' : 'Show all' %></button>
     <% } %>
 
     <form class="add-form" action="/households/<%=household._id%>/activitytypes" method="POST">

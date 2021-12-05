@@ -22,7 +22,7 @@
                         </form>
                 </div>
             </div>
-            <div id="comments-for-<%= activity._id%>" class="comment-area <%= activity._id.toString() === activityId? '' : 'hidden' %>">
+            <div class="comment-area <%= activity._id.toString() === activityId? '' : 'hidden' %>">
                 <div class="comments">
                     <% for (let comment of activity.comments) { %>
                         <div class="comment" id="<%= comment._id %>">
