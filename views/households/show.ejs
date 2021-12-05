@@ -13,7 +13,7 @@
             <div class="card feed">
                 <h3>Completed activities</h3>
                 <p class="activities-more-info">starting <%= getFirstDayOfWeek().toLocaleDateString() %> | <a href="/households/<%=household._id%>/activities/">all activities</a></p>
-                <%- include("../partials/feed") %>
+                <%- include("../partials/feed", {commentsRedirectTo: "dashboard"}) %>
             </div>
         </div>
     </div>

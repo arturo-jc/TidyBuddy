@@ -22,6 +22,7 @@ module.exports.displaySearchResults = async (req, res) => {
 
 module.exports.showHousehold = async (req, res) => {
     const { householdId } = req.params;
+    const { activityId } = req.query;
 
     const household = await Household
         .findById(householdId)
@@ -79,13 +80,14 @@ module.exports.showHousehold = async (req, res) => {
         household,
         priorityItems,
         frequentItems,
-        activities
+        activities,
+        activityId
     })
 }
 
 module.exports.sendRequest = async (req, res) => {
     const { householdId } = req.params;
-    const household = await Household.findByIdAndUpdate(
+    await Household.findByIdAndUpdate(
         householdId,
         { $addToSet: { pendingRequests: req.user } });
     req.flash("success", "Your request has been sent")

@@ -7,7 +7,7 @@
                     </div>
                     <div class="item-description">
                         <p>
-                            <a href="/users/<%= activity.user._id %>"><%=activity.user.username%></a> completed <%= activity.name %> on <%= activity.date.toLocaleDateString() %> at <%= activity.date.toLocaleTimeString() %>
+                            <a href="/users/<%= activity.user._id%>"><%=activity.user.username%></a> completed <%= activity.name %> on <%= activity.date.toLocaleDateString() %> at <%= activity.date.toLocaleTimeString() %>
                         </p>
                         <button><i class="fas fa-comment fa-lg"></i>
                             <%= activity.comments.length ? String(activity.comments.length).concat(" comments")
@@ -22,10 +22,10 @@
                         </form>
                 </div>
             </div>
-            <div class="comment-area hidden">
+            <div id="comments-for-<%= activity._id%>" class="comment-area <%= activity._id.toString() === activityId? '' : 'hidden' %>">
                 <div class="comments">
                     <% for (let comment of activity.comments) { %>
-                        <div class="comment">
+                        <div class="comment" id="<%= comment._id %>">
                             <div class="comment-main">
                                 <% if (comment.user.profilePic) { %>
                                     <img class="thumbnail thumbnail-SM" src="<%=comment.user.profilePic.thumbnailSm%>" alt="">
@@ -55,6 +55,7 @@
                 <form class="add-comment-form"
                     action="/households/<%=household._id%>/activities/<%=activity._id%>/comments" method="POST">
                     <label for="body">Comment</label>
+                    <input type="hidden" name="commentsRedirectTo" value="<%= commentsRedirectTo %>"> 
                     <textarea name="body" id="body" placeholder="Write a comment..."></textarea>
                     <button>Post comment</button>
                 </form>

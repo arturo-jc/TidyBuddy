@@ -4,6 +4,7 @@ const Activity = require("../models/activity");
 
 module.exports.showActivities = async (req, res) => {
     const { householdId } = req.params;
+    const { activityId } = req.query;
 
     const household = await Household
     .findById(householdId)
@@ -31,7 +32,8 @@ module.exports.showActivities = async (req, res) => {
 
     res.render("activities/show", {
         household,
-        activities})
+        activities,
+        activityId})
 }
 
 module.exports.createActivity = async (req, res) => {
