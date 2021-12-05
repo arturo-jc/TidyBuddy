@@ -1,5 +1,5 @@
-const { Household } = require("../models/household");
-const { Activity } = require("../models/activity");
+const Household = require("../models/household");
+const Activity = require("../models/activity");
 const getFirstDayOfWeek = require("../utilities/getFirstDayOfWeek")
 
 module.exports.displaySearchResults = async (req, res) => {

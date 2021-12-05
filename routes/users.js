@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { createUser, redirectUponLogin, updateProfilePic, showUserProfile, serveChangePasswordForm, changePassword, serveDeleteForm, deleteAccount, findHousehold } = require("../controllers/users")
 const passport = require("passport");
 const catchAsync = require("../utilities/catchAsync");
+const { createUser, redirectUponLogin, updateProfilePic, showUserProfile, serveChangePasswordForm, changePassword, serveDeleteForm, deleteAccount, findHousehold } = require("../controllers/users")
 const { isUser, userExists, isLoggedIn, ownsAccount, PasswordsMatch } = require("../middleware")
 const multer = require("multer");
 const { storage, cloudinary } = require("../cloudinary")

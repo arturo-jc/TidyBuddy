@@ -27,4 +27,4 @@ const HouseholdSchema = new Schema(
     }
 )
 
-module.exports.Household = mongoose.model("Household", HouseholdSchema);
+module.exports = mongoose.model("Household", HouseholdSchema);

@@ -1,5 +1,5 @@
-const { Comment } = require("../models/comment")
-const { Activity } = require("../models/activity")
+const Comment = require("../models/comment")
+const Activity = require("../models/activity")
 
 module.exports.createComment = async (req, res) => {
     const { householdId, activityId } = req.params;

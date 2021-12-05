@@ -1,7 +1,7 @@
-const { Household } = require("./models/household")
-const { User } = require("./models/user")
-const { Activity } = require("./models/activity")
-const { Comment } = require("./models/comment")
+const Household = require("./models/household")
+const User = require("./models/user")
+const Activity = require("./models/activity")
+const Comment = require("./models/comment")
 const ExpressError = require("./utilities/ExpressError");
 
 module.exports.isUser = (req, res, next) => {

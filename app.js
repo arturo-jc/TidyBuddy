@@ -15,7 +15,7 @@ const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
 const ExpressError = require("./utilities/ExpressError");
 const errorHandler = require("./errorHandler")
-const { User } = require("./models/user");
+const User = require("./models/user");
 
 // ROUTES
 const activityTypeRoutes = require("./routes/activity-types");

@@ -1,10 +1,9 @@
-const { User } = require("../models/user");
-const { ActivityType } = require("../models/activity-type");
-const { Activity } = require("../models/activity");
-const { Comment } = require("../models/comment");
-const { Household } = require("../models/household");
+const User = require("../models/user");
+const ActivityType = require("../models/activity-type");
+const Activity = require("../models/activity");
+const Comment = require("../models/comment");
+const Household = require("../models/household");
 const { cloudinary } = require("../cloudinary");
-const ExpressError = require("../utilities/ExpressError");
 
 module.exports.createUser = async (req, res) => {
     const { username, email, password } = req.body;

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const { Comment } = require("./comment")
+const Comment = require("./comment")
 
 const ActivitySchema = new Schema({
     name: {
@@ -33,4 +33,4 @@ ActivitySchema.post("findOneAndDelete", async function (activity) {
     }
 })
 
-module.exports.Activity = mongoose.model("Activity", ActivitySchema);
+module.exports = mongoose.model("Activity", ActivitySchema);

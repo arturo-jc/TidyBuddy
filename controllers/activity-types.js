@@ -1,5 +1,5 @@
-const { ActivityType } = require("../models/activity-type");
-const { Household } = require("../models/household")
+const ActivityType = require("../models/activity-type");
+const Household = require("../models/household")
 
 module.exports.addActivityType = async (req, res) => {
     const { householdId } = req.params;
