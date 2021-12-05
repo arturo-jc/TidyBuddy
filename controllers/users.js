@@ -5,7 +5,6 @@ const { Comment } = require("../models/comment");
 const { Household } = require("../models/household");
 const { cloudinary } = require("../cloudinary");
 const ExpressError = require("../utilities/ExpressError");
-const { render } = require("ejs");
 
 module.exports.createUser = async (req, res) => {
     const { username, email, password } = req.body;
@@ -60,13 +59,6 @@ module.exports.showUserProfile = async (req, res) => {
     res.render("users/show", { user })
 }
 
-module.exports.isUser = async (req, res, next) => {
-    if (!req.isAuthenticated()){
-        return res.render("landing")
-    }
-    next();
-}
-
 // module.exports.takeUserToMain = async (req, res) => {
 //     if (req.user) {
 //         const household = await Household.findOne({ users: req.user })
@@ -94,10 +86,7 @@ module.exports.serveChangePasswordForm = async (req, res) => {
 
 module.exports.changePassword = async (req, res, next) => {
     const {userId} = req.params;
-    const {currentpw, reenter, newpw} = req.body;
-    if (currentpw !== reenter) {
-        return next(new ExpressError("Passwords do not match, please try again", 403, "IncorrectPasswordError"))
-    }
+    const {currentpw, newpw} = req.body;
     const user = await User.findById(userId);
     await user.changePassword(currentpw, newpw);
     req.flash("success", "Password successfully changed.")

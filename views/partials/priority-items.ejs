@@ -23,7 +23,7 @@
                 </button>
             </form>
             <div class="button-group">
-                <form action="/households/<%=household._id%>/activitytypes/<%= item._id %>/unmark-to-do?_method=PUT"
+                <form action="/households/<%=household._id%>/activitytypes/<%= item._id %>/toggle-todo?_method=PUT"
                     method="POST">
                     <button><i class="fas fa-flag fa-lg icon-active"></i></button>
                 </form>

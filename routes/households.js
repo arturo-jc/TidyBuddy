@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utilities/catchAsync")
 const { displaySearchResults, showHousehold, sendRequest, acceptRequest, declineRequest, acceptDeclined, createHousehold } = require("../controllers/households")
-const { isLoggedIn, isHouseholdMember, isEligibleToJoin } = require("../middleware")
+const { isLoggedIn, householdExists, isHouseholdMember, isEligibleToJoin } = require("../middleware")
 
-router.get("/find-or-create", isLoggedIn, catchAsync(displaySearchResults))
+router.get("/find-or-create", isLoggedIn, catchAsync(householdExists), catchAsync(displaySearchResults))
 
-router.get("/:householdId", isLoggedIn, catchAsync(isHouseholdMember), catchAsync(showHousehold))
+router.get("/:householdId", isLoggedIn, catchAsync(householdExists), catchAsync(isHouseholdMember), catchAsync(showHousehold))
 
 router.put("/:householdId/send-request", catchAsync(isEligibleToJoin), catchAsync(sendRequest))
 

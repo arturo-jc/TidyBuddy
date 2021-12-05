@@ -15,15 +15,16 @@ module.exports.addActivityType = async (req, res) => {
     res.redirect(`/households/${householdId}`);
 }
 
-module.exports.markToDo = async (req, res) => {
+module.exports.toggleTodo = async (req, res) => {
+    console.log("Hit controller")
     const { householdId, typeId } = req.params;
-    await ActivityType.findByIdAndUpdate(typeId, { $inc: { priority: 1 } });
-    res.redirect(`/households/${householdId}`);
-}
-
-module.exports.unmarkToDo = async (req, res) => {
-    const { householdId, typeId } = req.params;
-    await ActivityType.findByIdAndUpdate(typeId, { priority: 0 });
+    const activityType = await ActivityType.findById(typeId);
+    if(activityType.priority > 0){
+        activityType.priority = 0;
+    }else{
+        activityType.priority = 1;
+    }
+    await activityType.save();
     res.redirect(`/households/${householdId}`);
 }
 

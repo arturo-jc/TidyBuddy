@@ -154,6 +154,23 @@ main .card {
     font-weight: 400;
 }
 
+/* ERROR TEMPLATE */
+
+.error-container{
+    padding: 7% 15%
+}
+
+.error-container h1{
+    font-size: 4rem;
+    margin: 12px 0;
+}
+
+.error-container .error-subheading{
+    font-size: 2rem;
+    line-height: 1.5;
+    margin: 12px 0;
+    margin: 0;
+}
 
 /* lOGIN/REGISTER FORMS */
 
@@ -614,6 +631,14 @@ footer {
     .hero-container{
         padding: 7% 3%;
     }
+    .error-container{
+        padding: 0 3%;
+    }
+
+    .error-container .column {
+        margin: 7% 3%
+    }
+
     .feature-container{
         padding: 4% 3%;
     }

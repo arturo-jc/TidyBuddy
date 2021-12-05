@@ -1,12 +1,57 @@
 const { Household } = require("./models/household")
+const { User } = require("./models/user")
 const { Activity } = require("./models/activity")
 const { Comment } = require("./models/comment")
 const ExpressError = require("./utilities/ExpressError");
+
+module.exports.isUser = (req, res, next) => {
+    if (!req.isAuthenticated()){
+        return res.render("landing")
+    }
+    next();
+}
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()){
         req.session.returnTo = req.originalUrl;
         return next(new ExpressError("You must be logged in", 403, "AuthenticationError"))
+    }
+    next()
+}
+
+module.exports.PasswordsMatch = (req, res, next) => {
+    const {currentpw, reenter} = req.body;
+    if (currentpw !== reenter) {
+        return next(new ExpressError("Passwords do not match, please try again", 403, "IncorrectPasswordError"))
+    }
+    next()
+}
+
+// ASYNC
+
+module.exports.householdExists = async (req, res, next) => {
+    const {householdId} = req.params;
+    if (householdId){
+        const household = await Household.findById(householdId)
+        if (!household){
+            next(new ExpressError(`Sorry, there is no household with ID ${householdId}`, 404, "HouseholdNotFoundErrorRender"))
+        }
+    }
+    const queryHouseholdId = req.query.householdId;
+    if (queryHouseholdId){
+        const queryHousehold = await Household.findById(queryHouseholdId)
+        if (!queryHousehold){
+            next(new ExpressError(`Sorry, there is no household with ID ${queryHouseholdId}`, 404, "HouseholdNotFoundErrorFlash"))
+        }
+    }
+    next()
+}
+
+module.exports.userExists = async (req, res, next) => {
+    const {userId} = req.params;
+    const user = await User.findById(userId)
+    if (!user){
+        next(new ExpressError(`Sorry, there is no user with ID ${userId}`, 404, "NotFoundError"))
     }
     next()
 }

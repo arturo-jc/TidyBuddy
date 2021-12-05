@@ -12,14 +12,10 @@ module.exports.displaySearchResults = async (req, res) => {
         const household = await Household.findById(householdId)
             .select("name users pendingRequests")
             .populate({ path: "users", select: "username" })
-        if (household) {
-            if (household.pendingRequests.includes(req.user._id)) {
-                requestSent = true
-            }
-            return res.render("households/find-or-create", { household, pendingRequests, requestSent })
+        if (household.pendingRequests.includes(req.user._id)) {
+            requestSent = true
         }
-        req.flash("error", `There is no household with ID ${householdId}. Please try again.`)
-        return res.redirect("/households/find-or-create")
+        return res.render("households/find-or-create", { household, pendingRequests, requestSent })
     }
     res.render("households/find-or-create", { household: null, pendingRequests, requestSent })
 }
