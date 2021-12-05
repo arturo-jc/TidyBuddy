@@ -51,6 +51,7 @@ body {
     flex-grow: 1;
     flex-basis: 50%;
     display: flex;
+    flex-direction: column;
 }
 
 .card {
@@ -79,6 +80,80 @@ main .card {
     text-align: center;
     padding-bottom: 40px;
 }
+
+/* LANDING */
+
+.hero-illustration {
+    width: 100%;
+    max-width: 600px;
+    min-width: 350px;
+}
+
+.hero-container{
+    padding: 7% 15%
+}
+
+.hero-container h1 {
+    font-size: 3rem;
+    line-height: 1.5;
+    text-shadow: -5px 5px 0 #eef2f7;
+    text-transform: uppercase;
+    margin: 12px 0;
+}
+
+.hero-container .subheading {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+.hero-container .signup{
+    border-width: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 30px 0 15px;
+    width: fit-content;
+    text-decoration: none;
+}
+
+.hero-container .signup:hover {
+    cursor: pointer;
+}
+
+.row-reverse {
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+.feature-container{
+    padding: 4% 15%
+}
+
+
+.feature-column{
+    flex-grow: 1;
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-column .card {
+    text-align: center;
+    padding: 34px;
+    width: 280px;
+    box-sizing: border-box;
+}
+
+.feature-column .card p {
+    font-size: .8rem;
+    font-weight: 400;
+}
+
 
 /* lOGIN/REGISTER FORMS */
 
@@ -400,6 +475,11 @@ margin-bottom: 5px;
     align-items: center;
 }
 
+.user-main .card h1 {
+    max-width: 450px;
+    overflow-wrap: break-word;
+}
+
 .upload{
     border-width: 0;
     font-family: 'Montserrat', sans-serif;
@@ -531,4 +611,20 @@ footer {
     main .card {
         margin-top: 0;
     }
+    .hero-container{
+        padding: 7% 3%;
+    }
+    .feature-container{
+        padding: 4% 3%;
+    }
+
+    .feature-column{
+        flex-basis: 100%;
+    }
+
+    .feature-column .card {
+        border-radius: 10px;
+    }
+
+
 }

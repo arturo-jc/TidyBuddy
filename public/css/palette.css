@@ -30,8 +30,23 @@ body {
 background-color: white;
 }
 
-/* PRIORITY CARD */
+/* LANDING */
 
+.hero{
+    background-color: white;
+}
+
+.hero-container .signup {
+    color: #026461;
+    background-color: #66afad;
+}
+.hero-container .signup:hover {
+    color: white;
+    background-color: #039590;
+}
+
+
+/* PRIORITY CARD */
 
 .priority .last-completed-date {
     color: white;
@@ -180,11 +195,11 @@ background-color: white;
     color: #9BAEBC;
 }
 
-.comment .comment-text a {
+.comment .comment-user a {
     color: #039590;
 }
 
-.comment .comment-body .comment-text .comment-details {
+.comment .comment-body .comment-user .comment-details {
     color: #677987;
 }
 

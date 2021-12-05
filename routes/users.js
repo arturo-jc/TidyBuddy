@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { createUser, redirectUponLogin, updateProfilePic, showUserProfile, takeUserToMain, serveChangePasswordForm, changePassword, serveDeleteForm, deleteAccount } = require("../controllers/users")
+const { createUser, redirectUponLogin, updateProfilePic, showUserProfile, isUser, serveChangePasswordForm, changePassword, serveDeleteForm, deleteAccount, findHousehold } = require("../controllers/users")
 const passport = require("passport");
 const catchAsync = require("../utilities/catchAsync");
 const { isLoggedIn, ownsAccount } = require("../middleware")
@@ -8,13 +8,13 @@ const multer = require("multer");
 const { storage, cloudinary } = require("../cloudinary")
 const upload = multer({ storage });
 
-router.get("/", catchAsync(takeUserToMain))
+router.get("/", isUser, catchAsync(findHousehold))
 
 router.route("/login")
     .get((req, res) => res.render("users/login"))
     .post(
         passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }),
-        catchAsync(redirectUponLogin)
+        redirectUponLogin, findHousehold
     )
 
 router.get("/logout", (req, res) => {

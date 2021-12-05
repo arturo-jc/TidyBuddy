@@ -5,6 +5,7 @@ const { Comment } = require("../models/comment");
 const { Household } = require("../models/household");
 const { cloudinary } = require("../cloudinary");
 const ExpressError = require("../utilities/ExpressError");
+const { render } = require("ejs");
 
 module.exports.createUser = async (req, res) => {
     const { username, email, password } = req.body;
@@ -16,10 +17,13 @@ module.exports.createUser = async (req, res) => {
     });
 }
 
-module.exports.redirectUponLogin = async (req, res) => {
-    const redirectUrl = req.session.returnTo || "/"
-    delete req.session.returnTo
-    return res.redirect(redirectUrl)
+module.exports.redirectUponLogin = (req, res, next) => {
+    if (req.session.returnTo){
+        const returnUrl = req.session.returnTo
+        delete req.session.returnTo
+        return res.redirect(returnUrl)
+    }
+    next()
 }
 
 module.exports.updateProfilePic = async (req, res) => {
@@ -56,15 +60,30 @@ module.exports.showUserProfile = async (req, res) => {
     res.render("users/show", { user })
 }
 
-module.exports.takeUserToMain = async (req, res) => {
-    if (req.user) {
-        const household = await Household.findOne({ users: req.user })
-        if (household) {
-            return res.redirect(`/households/${household._id}`)
-        }
-        return res.redirect("/households/find-or-create")
+module.exports.isUser = async (req, res, next) => {
+    if (!req.isAuthenticated()){
+        return res.render("landing")
     }
-    res.redirect("/login")
+    next();
+}
+
+// module.exports.takeUserToMain = async (req, res) => {
+//     if (req.user) {
+//         const household = await Household.findOne({ users: req.user })
+//         if (household) {
+//             return res.redirect(`/households/${household._id}`)
+//         }
+//         return res.redirect("/households/find-or-create")
+//     }
+//     res.redirect("/")
+// }
+
+module.exports.findHousehold = async (req, res) => {
+    const household = await Household.findOne({ users: req.user })
+    if (household) {
+        return res.redirect(`/households/${household._id}`)
+    }
+    return res.redirect("/households/find-or-create")
 }
 
 module.exports.serveChangePasswordForm = async (req, res) => {

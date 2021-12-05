@@ -57,7 +57,7 @@ module.exports.showHousehold = async (req, res) => {
 
     frequentItems.unpinned = frequentItems
         .filter(item => !item.pinned)
- 
+
     const activities = await Activity
         .find({
             household,
