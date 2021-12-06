@@ -16,8 +16,8 @@ const ExpressError = require("./utilities/ExpressError");
 const errorHandler = require("./errorHandler")
 const User = require("./models/user");
 const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require("helmet")
-const dbUrl = process.env.DB_URL
+const helmet = require("helmet");
+const MongoStore = require('connect-mongo');
 
 // ROUTES
 const activityTypeRoutes = require("./routes/activity-types");
@@ -28,8 +28,7 @@ const householdRoutes = require("./routes/households")
 
 // DB CONNECTION
 
-// 'mongodb://localhost:27017/tidyApp'
-
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/TidyBuddy'
 mongoose.connect(dbUrl)
     .then(() => {
         console.log("CONNECTED TO MONGODB")
@@ -45,9 +44,22 @@ const app = express();
 
 // SESSION CONFIG
 
+const secret = process.env.SECRET || "thisshouldbeabettersecret!";
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {secret}
+})
+
+store.on("error", function(e){
+    console.log("SESSION STORE ERROR", e)
+})
+
 const sessionConfig = {
+    store,
     name: "session",
-    secret: "thisshouldbeabettersecret!",
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {

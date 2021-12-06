@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: "TidyApp",
+        folder: "TidyBuddy",
         allowedFormats: ["jpeg", "png", "jpg"]
     }
 })
