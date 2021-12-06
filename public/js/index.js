@@ -59,7 +59,7 @@ if (sidebar) {
     dashboardMain.addEventListener("click", () => {
         sidebar.classList.remove("active")
     })
-} else if (main) {
+} else if (navLinks) {
     hamburgerMenu.addEventListener("click", () => {
         navLinks.classList.toggle("active")
     })

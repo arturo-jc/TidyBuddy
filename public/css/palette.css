@@ -45,6 +45,18 @@ background-color: white;
     background-color: #039590;
 }
 
+.hero-container .login {
+    color: #66afad;
+    background-color: white;
+    border-color: #66afad;
+}
+
+.hero-container .login:hover {
+    color: white;
+    background-color: #026461;
+    border-color: #026461;
+}
+
 
 /* PRIORITY CARD */
 

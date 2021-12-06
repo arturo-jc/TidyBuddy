@@ -107,17 +107,25 @@ main .card {
     margin: 0;
 }
 
+.auth-button-area {
+    margin: 50px 0;
+}
 
-.hero-container .signup{
+.hero-container .auth-button{
     border-width: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.25rem;
     font-weight: 500;
     padding: 12px;
     border-radius: 10px;
-    margin: 30px 0 15px;
+    margin: 30px 10px 0 0;
     width: fit-content;
     text-decoration: none;
+}
+
+.hero-container .auth-button.login {
+    border-style: solid;
+    border-width: 2px;
 }
 
 .hero-container .signup:hover {

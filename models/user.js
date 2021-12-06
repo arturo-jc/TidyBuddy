@@ -20,14 +20,13 @@ ProfilePicSchema.virtual("thumbnailSm").get(function(){
 })
 
 const UserSchema = new Schema({
-    email: {
+    username: {
         type: String,
-        required: [true, "No email was given."],
-        unique: true
+        required: [true, "No username was given."]
     },
     profilePic: ProfilePicSchema
 })
 
-UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(passportLocalMongoose, {usernameField: "email"});
 
 module.exports = mongoose.model("User", UserSchema)

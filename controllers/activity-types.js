@@ -50,5 +50,6 @@ module.exports.deleteActivityType = async (req, res) => {
         { $pull: { activityTypes: typeId } }
     )
     await ActivityType.findByIdAndDelete(typeId);
+    req.flash("success", "Activity successfully deleted.")
     res.redirect(`/households/${householdId}`);
 }
