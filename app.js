@@ -64,11 +64,11 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
+
 app.use(session(sessionConfig))
 
 // PASSPORT SET UP
