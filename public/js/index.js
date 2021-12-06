@@ -49,21 +49,20 @@ for (let alert of alerts) {
 const hamburgerMenu = document.querySelector(".ham-menu")
 const sidebar = document.querySelector(".sidebar")
 const navLinks = document.querySelector(".nav-links")
-const main = document.querySelector("main")
-const dashboardMain = document.querySelector(".dashboard-main")
+const content = document.querySelector(".content")
 
 if (sidebar) {
     hamburgerMenu.addEventListener("click", () => {
         sidebar.classList.toggle("active")
     })
-    dashboardMain.addEventListener("click", () => {
+    content.addEventListener("click", () => {
         sidebar.classList.remove("active")
     })
 } else if (navLinks) {
     hamburgerMenu.addEventListener("click", () => {
         navLinks.classList.toggle("active")
     })
-    main.addEventListener("click", () => {
+    content.addEventListener("click", () => {
         navLinks.classList.remove("active")
     })
 }

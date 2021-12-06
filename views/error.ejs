@@ -4,6 +4,9 @@
             <div class="column">
                 <h1><%= err.statusCode %> </h1>
                 <p class="error-subheading"><%= err.message %></p>
+                <% if (process.env.NODE_ENV !== "production") { %>
+                    <p><%= err.stack %> </p>
+                <% } %>
             </div>
             <div class="column">
                 <img class="hero-illustration" src="/svg/error.svg" alt="">
